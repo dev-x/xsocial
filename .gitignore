@@ -1,0 +1,10 @@
+.idea
+nbproject
+
+Thumbs.db
+
+/vendor
+/web/assets
+
+composer.phar
+/composer.lock
