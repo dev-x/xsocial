@@ -67,15 +67,29 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return $this->hasMany(Image::className(), ['parent_id' => 'id'])->where("parent_type = 'user'");
     }
 
+    public function getFollowingTo()
+    {
+        return $this->hasMany(Follower::className(), ['user_id' => 'id']);
+    }
+
     public function getPosts()
     {
         return $this->hasMany(Post::className(), ['user_id' => 'id']);
     }
 
+    
     public function getPublishPosts()
     {
         return $this->hasMany(Post::className(), ['user_id' => 'id'])->where("status = 'publish'")->orderBy('post_time DESC');
     }
+    
+    public function isFollowingTo($follow_to_id){
+        $follower = Follower::findOne([
+            'user_id' => $this->id,
+            'following_user_id' => $follow_to_id,
+        ]);
+        return $follower ? true : false;
+    } 
 
     public function getPcount() {
         $command = static::getDb()->createCommand("select count(*) as kilk from post where user_id = {$this->id}")->queryAll();

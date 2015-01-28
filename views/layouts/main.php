@@ -38,10 +38,11 @@ app\assets\AppAsset::register($this);
                 ['label' => 'Home', 'url' => ['/site/login']]:
                 ['label' => 'Home', 'url' => ['/users/'.Yii::$app->user->identity->username]],*/
                 //['label' => 'Головна', 'url' => ['/site/index']],
+                ['label' => \Yii::t('app', 'News'), 'url' => ['/feed']],
                 ['label' => 'Пости', 'url' => ['/post/index']],
                 ['label' => 'Про нас', 'url' => ['/site/contact']],
                 ['label' => 'Користувачі', 'url' => ['/user/index']],
-
+                
                 ],
                // [])
 
