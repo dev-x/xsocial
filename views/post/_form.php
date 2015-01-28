@@ -1,4 +1,4 @@
-<?    
+<?php    
 /**
  * @var yii\base\View $this
  * @var app\modules\blogs\models\Blog $model
@@ -13,7 +13,7 @@ echo $form->field($model, 'content')->textArea(array('rows' => 9,'cols'=>181));
 ?>
 
 <div class="form-actions">
-	<?     echo Html::submitButton($model->isNewRecord ? 'Save' : 'Update', array('class' => 'btn btn-primary')); ?>
+	<?php     echo Html::submitButton($model->isNewRecord ? 'Save' : 'Update', array('class' => 'btn btn-primary')); ?>
 </div>
 
 <?     ActiveForm::end(); ?>
