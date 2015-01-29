@@ -1,5 +1,27 @@
 $(document).ready(function(){
-		
+    
+		$('.follow-button').click(function(e){
+                    e.preventDefault();
+                    
+                    if ($(this).data('action') == 'follow')
+                        url = '/follower/create';
+                    else
+                        url = '/follower/delete';
+                    
+                    $.ajax({
+                        type:'POST',
+                        url: url,
+                        data: {id: $('#user-info').data('id')},
+                        dataType: "json",
+                        success: function(response){
+                            if (response.status == 'created')
+                                $('.follow-button').data('action', 'unfollow').text('Відписатись');    
+                            if (response.status == 'deleted')
+                                $('.follow-button').data('action', 'follow').text('Підписатись');    
+                        }
+                    });
+                });
+
 		$('#zberezheno').click(function(){
 			$('#zberezhenoq').hide(1000);
 		});
