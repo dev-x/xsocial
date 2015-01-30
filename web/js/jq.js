@@ -1,7 +1,7 @@
 $(document).ready(function(){
     
 		$('.follow-button').click(function(e){
-                    alert('sccsc');
+                    
                     e.preventDefault();
                     
                     if ($(this).data('action') == 'follow')
