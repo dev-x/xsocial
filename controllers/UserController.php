@@ -7,6 +7,7 @@ use yii\web\Controller;
 use app\models\User;
 use app\models\Image;
 use app\models\Post;
+use app\models\Follower;
 use yii\data\ActiveDataProvider;
 
 class UserController extends Controller
@@ -71,6 +72,21 @@ class UserController extends Controller
         $image = new Image();
 
         return $this->render('profile', ['modelUser' => $user, 'modelImage' => $image]);
+    }
+    
+    public function actionMyfollows($username=null)
+    {
+        $user = User::findByUsername($username);
+        
+        $followerModel = Follower::findAll(['user_id' => $user->id]);
+        $id_user = '';
+        foreach($followerModel as $follower){
+            $id_user[] = $follower->following_user_id;
+        }
+        $FollowUser = User::findAll(['id' => $id_user]);
+        
+        $image = new Image();
+        return $this->render('myfollows', ['modelUser' => $user, 'modelImage' => $image, 'followUser' => $FollowUser]);
     }
     
     public function actionEdit($id)
