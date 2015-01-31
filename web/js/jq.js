@@ -1,6 +1,7 @@
 $(document).ready(function(){
     
 		$('.follow-button').click(function(e){
+                    
                     e.preventDefault();
                     
                     if ($(this).data('action') == 'follow')
