@@ -103,6 +103,6 @@ use yii\helpers\Url;
         </div>
     </div>
     <div class="col-sm-3">
-                <?php echo $this->render('/user/_sidebar', array('author' => $post->author, 'postSidebar' =>$postSidebar)); ?>
+                <?php echo $this->render('/user/_sidebar', array('author' => $post->author)); ?>
     </div>
 </div>

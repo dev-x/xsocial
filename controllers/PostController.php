@@ -41,9 +41,7 @@ class PostController extends Controller
             $comments = $post->getComments()->all();
         }
 
-        $postSidebar = Post::find()->orderBy('post_time DESC')->limit(3)->all();
         echo $this->render('show', array(
-                'postSidebar'=>$postSidebar,
                 'post' => $post,
                 'comments' => $comments,
                 'modelNewComment' => $modelNewComment
@@ -54,9 +52,7 @@ class PostController extends Controller
     {
         $query = Post::find()->orderBy('post_time DESC');
         $model = new ActiveDataProvider(['query' => $query, 'pagination' => ['pageSize' => 5]]);
-        $postSidebar = Post::find()->orderBy('post_time DESC')->limit(3)->all();
         echo $this->render('index', [
-            'postSidebar' => $postSidebar,
             'data' => $model->getModels(),
             'pagination' => $model->pagination,
             'count' => $model->pagination->totalCount,
