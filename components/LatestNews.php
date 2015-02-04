@@ -13,7 +13,7 @@ class LatestNews extends Widget{
 	
 	public function init(){
 		parent::init();
-                $this->order = ($this->order === null ? `ASC` : ($this->order != `ASC` ? `DESC` : `ASC`));
+                $this->order = ($this->order === null ? '`post_time` ASC' : ($this->order != 'ASC' ? '`post_time` DESC' : '`post_time` ASC'));
                 $this->limit = ($this->limit === null ? '3' : (int)$this->limit);
                 
                 $post = Post::find()->orderBy($this->order)->limit($this->limit)->all();

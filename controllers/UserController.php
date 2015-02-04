@@ -1,13 +1,16 @@
 <?php
 
 namespace app\controllers;
+use yii\data\Pagination;
 
 use Yii;
 use yii\web\Controller;
 use app\models\User;
 use app\models\Image;
 use app\models\Post;
+use app\models\Likes;
 use app\models\Follower;
+
 use yii\data\ActiveDataProvider;
 
 class UserController extends Controller
@@ -53,7 +56,6 @@ class UserController extends Controller
         if (!$post)
             $post = new Post();
         
-        
 
         return $this->render('show', ['modelUser' => $user, 'modelImage' => $image, 'modelNewPost' => $post]);
     }
@@ -87,6 +89,23 @@ class UserController extends Controller
         
         $image = new Image();
         return $this->render('myfollows', ['modelUser' => $user, 'modelImage' => $image, 'followUser' => $FollowUser]);
+    }
+    
+    public function actionMylikes($username=null)
+    {
+        $user = User::findByUsername($username);
+        
+        $likeModel = Likes::findAll(['user_id' => $user->id]);
+        $id_model = '';
+        foreach($likeModel as $like){
+            //$id_model[$like->parent_type][] = $like->parent_id;
+            $id_model[] = $like->parent_id;
+        }
+        $query = Post::find()->where(['id' => $id_model]);
+        $model = new ActiveDataProvider(['query' => $query, 'pagination' => ['pageSize' => 5]]);
+        
+        $image = new Image();
+        return $this->render('mylikes', ['modelUser' => $user, 'modelImage' => $image, 'likepost' => $model->getModels(), 'pagination' => $model->pagination]);
     }
     
     public function actionEdit($id)

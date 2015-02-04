@@ -9,6 +9,6 @@ $this->title = 'Блоги';
         <?php echo $this->render('/site/_posts', array('data' => $data, 'pagination' => $pagination)); ?>
     </div>
     <div class="col-sm-3">
-        <?php echo $this->render('/user/_sidebar', array('postSidebar' => $postSidebar)); ?>
+        <?php echo $this->render('/user/_sidebar'); ?>
     </div>
 </div>
