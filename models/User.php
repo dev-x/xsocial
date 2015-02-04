@@ -80,6 +80,15 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return $follower ? true : false;
     }
     
+    public function isLikes($parent_id, $parent_type){
+        $likes = Likes::findOne([
+            'user_id' => $this->id,
+            'parent_id' => $parent_id,
+            'parent_type' => $parent_type,
+        ]);
+        return $likes ? true : false;
+    }
+    
     public function getPosts()
     {
         return $this->hasMany(Post::className(), ['user_id' => 'id']);

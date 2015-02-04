@@ -1,5 +1,33 @@
 $(document).ready(function(){
     
+                $('.like_button').click(function(e){
+                    e.preventDefault();
+                    
+                    if ($(this).data('action') == 'likeon')
+                        url = '/likes/create';
+                    else
+                        url = '/likes/delete';
+                    
+                    $.ajax({
+                        type:'POST',
+                        url: url,
+                        data: {id: $(this).data('id'), type: $(this).data('type')},
+                        dataType: "json",
+                        success: function(response){
+                            if (response.status == 'created'){
+                                $('#'+response.modelid).data('action', 'likeoff');
+                                $('#likes_view'+response.modelid).removeClass('glyphicon glyphicon-heart-empty');
+                                $('#likes_view'+response.modelid).addClass('glyphicon glyphicon-heart').text('-'+response.likesCount);
+                            }
+                            if (response.status == 'deleted'){
+                                $('#'+response.modelid).data('action', 'likeon');
+                                $('#likes_view'+response.modelid).removeClass('glyphicon glyphicon-heart');
+                                $('#likes_view'+response.modelid).addClass('glyphicon glyphicon-heart-empty').text('-'+response.likesCount);
+                            }
+                        }
+                    });
+                });
+    
 		$('.follow-button').click(function(e){
                     
                     e.preventDefault();
