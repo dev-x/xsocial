@@ -1,10 +1,12 @@
 <?php
     use yii\helpers\Html;
 ?>
-        <h3 style="color:#008B66;font-style: italic;">Останні пости</h3>
+        <h3 style="color:#008B66;font-style: italic;"><?= \Yii::t('app','Latest Post');?></h3>
         <?php foreach ($latestnews as $post) : ?>
             <div class="panel panel-default">
-                <div style="background-color:#00A87B;" class="panel-heading"><p style="margin-left:10px; font-size:20px;color:#fff;font-style: italic;"><?php echo $post->title."<br>"; ?></p></div>
+                <div style="background-color:#00A87B;" class="panel-heading">
+                <a class="podskazka" href="#" style="padding:2px;margin-left:10px; font-size:18px;color:#fff;font-style: italic;"><?= mb_substr($post->title, 0, 20, "UTF-8")."..."; ?><span><?= $post->title; ?></span></a>
+                </div>
                 <div class="panel-body">
                         <?php if ($post->images) foreach($post->images as $postImage): ?>
                         <?php //echo $postImage->getImageUrl('small'); ?>
@@ -17,5 +19,4 @@
                     <button type="submit" class="btn btn-default pull-right"><?php  echo Html::a("Дочитати", array('post/show', 'id'=>$post->id));  ?></button>
                 </div>
             </div>
-            <hr>
         <?php endforeach; ?>

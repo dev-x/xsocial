@@ -24,15 +24,14 @@ use yii\helpers\Url;
 </script>
 
 <div class="row wrap">
-    <div style="margin-top:3px;min-height:550px;" class="col-sm-9">
-        <i style="float:right;color:#008B66;"><?php echo $post->post_time; ?></i><span style="color:#008B66;float:right;" class="glyphicon glyphicon-time"></span>
+    <div style="margin-top:3px;min-height:550px;" class="col-sm-9">        
         <h3 style="text-align:center;font-size:40px; color: black;"><font style="color:#008B66;"><?php echo $post->title; ?></font></h3>    
         <?php if(Yii::$app->session->hasFlash('PostEdit')): ?>
             <div id="zberezhenoq" class="breadcrumb">
                 <p style="font-size:18px;" id="zberezheno" class="active">Збережено</p>
             </div>
         <?php endif; ?>
-            <div style="padding:12px 0px 10px 10px;margin-top:-20px;" class="col-sm-12">         
+            <div  class="row" style="padding:12px 0px 10px 10px;margin-top:-20px;display:block;" >         
                             
                                     <?php if ($post->images) foreach($post->images as $postImage):  ?>
                                     <?php //echo $postImage->getImageUrl('small'); ?>
@@ -41,18 +40,38 @@ use yii\helpers\Url;
                                     
                     <?php echo $post->content; ?>
             </div>
-                <p class="text-right"><?php
-                           if (Yii::$app->user->id == $post->user_id){
-                                echo Html::a('Update | ',array('post/eddit','id'=>$post->id));
-                            } 
-                    ?>
-                    <?php
-                            if ((Yii::$app->user->id == '1' ) || (Yii::$app->user->id === $post->user_id)){
-                                echo Html::a('Delete',array('post/delete','id'=>$post->id));
-                            } 
-                    ?>
-                </p>
-            <div style="padding:10px;margin-top:50px; background-color:#F7FFFE;" class="well bs-component">
+        
+        <?php
+            if (!Yii::$app->user->isGuest){
+                if (Yii::$app->user->identity->isLikes($post->id,'post')){
+                    $action = 'likeoff';
+                    $class = 'glyphicon glyphicon-heart';
+                }else{
+                    $action = 'likeon';
+                    $class = 'glyphicon glyphicon-heart-empty';
+                }
+            }else{
+                $action = 'none';
+                $class = 'glyphicon glyphicon-heart-empty';
+            }
+            ?>
+            <p class="text-right"><?php
+                       if (Yii::$app->user->id == $post->user_id){
+                            echo Html::a('Update | ',array('post/eddit','id'=>$post->id));
+                        } 
+                ?>
+                <?php
+                        if ((Yii::$app->user->id == '1' ) || (Yii::$app->user->id === $post->user_id)){
+                            echo Html::a('Delete',array('post/delete','id'=>$post->id));
+                        } 
+                ?>
+            </p>
+            <div style="padding:10px;margin-top:60px; background-color:#F7FFFE;" class="well bs-component">
+                <i style="float:right;color:#008B66;"><?php echo $post->post_time; ?></i><span style="color:#008B66;float:right;" class="glyphicon glyphicon-time"></span>
+                <a href="" class="like_button" id='<?= $post->id ?>' data-id='<?= $post->id ?>' data-type='Post' data-action="<?= $action;?>"><i id="likes_view<?= $post->id; ?>" class="<?= $class;?>">-<?php echo $post->likes; ?></i></a>
+                
+            </div>
+            <div style="padding:10px;background-color:#F7FFFE;" class="well bs-component">
                 <?php if (Yii::$app->user->isGuest) { ?>
                         <?php echo Html::a ('Необхідно увійти', 'site/login'); } 
                                             elseif (Yii::$app->user->identity->dozvil != 1) { ?>

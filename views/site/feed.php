@@ -11,7 +11,6 @@ use app\components\LatestNews;
         <?php echo $this->render('/site/_posts', array('data' => $posts, 'pagination' => NULL)); ?>
     </div>
     <div class="col-sm-3">
-        <?= LatestNews::widget(['order' => 'ASC', 'limit' => '3']) ?>
         <?php echo $this->render('/user/_sidebar', array('postSidebar' => NULL)); ?>
     </div>
 </div>

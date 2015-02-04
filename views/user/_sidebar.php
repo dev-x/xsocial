@@ -44,8 +44,7 @@ use app\components\LatestNews;
             <?php } ?>
         </div>
 <?php endif; ?>
-<?php if(($this->context->getRoute() == "post/index") || (strpos($this->context->getRoute(),'post') === 0)) : ?>
-    
+<?php if(($this->context->getRoute() == "feed/index") || ($this->context->getRoute() == "post/index") || (strpos($this->context->getRoute(),'post') === 0)) : ?>  
         <div class="col-xs-3">
            <?= LatestNews::widget(['order' => 'ASC', 'limit' => '3']) ?>
         </div>
