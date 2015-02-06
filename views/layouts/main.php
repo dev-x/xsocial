@@ -34,11 +34,10 @@ app\assets\AppAsset::register($this);
         echo Nav::widget([
             'options' => ['class' => 'navbar-nav pull-right'],
             'items' => array_merge([
-              /*Yii::$app->user->isGuest ?
-                ['label' => 'Home', 'url' => ['/site/login']]:
-                ['label' => 'Home', 'url' => ['/users/'.Yii::$app->user->identity->username]],*/
-                //['label' => 'Головна', 'url' => ['/site/index']],
+              Yii::$app->user->isGuest ?
+                ['label' => \Yii::t('app','News'), 'url' => ['/site/login']]:
                 ['label' => \Yii::t('app','News'), 'url' => ['/feed']],
+                //['label' => 'Головна', 'url' => ['/site/index']],
                 ['label' => 'Пости', 'url' => ['/post/index']],
                 ['label' => 'Про нас', 'url' => ['/site/contact']],
                 ['label' => 'Користувачі', 'url' => ['/user/index']],
