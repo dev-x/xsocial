@@ -39,12 +39,12 @@ class LikesController extends Controller
             $likes->parent_type = $parent_type;
             $likes->save();
             
-            $model->likes = $model->likes + 1;
+            $model->like_count = $model->like_count + 1;
             $model->save();
             
-            return \yii\helpers\Json::encode(Array('status' => 'created', 'likesCount' => $model->likes, 'modelid' => $model->id));
+            return \yii\helpers\Json::encode(Array('status' => 'created', 'likesCount' => $model->like_count, 'modelid' => $model->id));
         } else {
-            return \yii\helpers\Json::encode(Array('status' => 'none', 'likesCount' => $model->likes));
+            return \yii\helpers\Json::encode(Array('status' => 'none', 'likesCount' => $model->like_count));
         }
     }
     
@@ -67,10 +67,10 @@ class LikesController extends Controller
         if($likes){
             $likes->delete();
             
-            $model->likes = (int)$model->likes - 1;
+            $model->like_count = (int)$model->like_count - 1;
             $model->save();
             
-            return \yii\helpers\Json::encode(Array('status' => 'deleted', 'likesCount' => $model->likes, 'modelid' => $model->id));
+            return \yii\helpers\Json::encode(Array('status' => 'deleted', 'likesCount' => $model->like_count, 'modelid' => $model->id));
         } else   
             return \yii\helpers\Json::encode(Array('status' => 'none'));
     }

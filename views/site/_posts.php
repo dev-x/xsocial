@@ -71,7 +71,7 @@ use yii\helpers\Url;
                                                 $class = 'glyphicon glyphicon-heart-empty';
                                             }
                                             ?>
-                                            <li><a href="" class="like_button" id='<?= $post->id ?>' data-id='<?= $post->id ?>' data-type='Post' data-action="<?= $action;?>"><i id="likes_view<?= $post->id; ?>" class="<?= $class;?>">-<?php echo $post->likes; ?></i></a></li>
+                                            <li><a href="" class="like_button" id='<?= $post->id ?>' data-id='<?= $post->id ?>' data-type='Post' data-action="<?= $action;?>"><i id="likes_view<?= $post->id; ?>" class="<?= $class;?>">-<?php echo $post->like_count; ?></i></a></li>
 
                                             <li style="float:right" ><?php  echo Html::a("Дочитати", ['post/show', 'id'=>$post->id],['class' => 'btn btn-default pull-right']);  ?></li>
                                     </ul>
