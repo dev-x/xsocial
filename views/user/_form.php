@@ -3,7 +3,7 @@
  * @var yii\base\View $this
  * @var app\modules\user $model
  */
- 
+
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -21,7 +21,7 @@ $form = ActiveForm::begin(array('options' => array('class' => 'form-vertical')))
 ?>
 
 <div class="form-actions">
-    <?php echo Html::submitButton($model->isNewRecord ? 'Save' : 'Update', array('class' => 'btn btn-primary')); ?>
+    <?php echo Html::submitButton($model->isNewRecord ? \Yii::t('app', 'Save') : \Yii::t('app', 'Update'), array('class' => 'btn btn-primary')); ?>
 </div>
 
 <?php ActiveForm::end(); ?>

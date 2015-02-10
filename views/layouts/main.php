@@ -23,7 +23,7 @@ app\assets\AppAsset::register($this);
 <?php $this->beginBody(); ?>
     <?php
         NavBar::begin([
-            'brandLabel' => 'Моя Сторінка',
+            'brandLabel' => \Yii::t('app', 'My Page'),
             'brandUrl' => Yii::$app->user->isGuest ? ['/site/login']:
                 ['/users/'.Yii::$app->user->identity->username.''],
             'options' => [
@@ -38,15 +38,15 @@ app\assets\AppAsset::register($this);
                 ['label' => \Yii::t('app','News'), 'url' => ['/site/login']]:
                 ['label' => \Yii::t('app','News'), 'url' => ['/feed']],
                 //['label' => 'Головна', 'url' => ['/site/index']],
-                ['label' => 'Пости', 'url' => ['/post/index']],
-                ['label' => 'Про нас', 'url' => ['/site/contact']],
-                ['label' => 'Користувачі', 'url' => ['/user/index']],
+                ['label' => \Yii::t('app', 'Posts'), 'url' => ['/post/index']],
+                ['label' => \Yii::t('app', 'About Us'), 'url' => ['/site/contact']],
+                ['label' => \Yii::t('app', 'Users'), 'url' => ['/user/index']],
 
                 ],
                // [])
 
-               (Yii::$app->user->isGuest ? [['label' => 'Вхід/Реєстрація', 'url' => ['/site/login']]]:
-                    [['label' => 'Ви ввійшли як (' . Yii::$app->user->identity->username .')' ,
+               (Yii::$app->user->isGuest ? [['label' => \Yii::t('app', 'Sign in/Sign up'), 'url' => ['/site/login']]]:
+                    [['label' => \Yii::t('app', 'You login as {username}', ['username' => Yii::$app->user->identity->username]),
                         'url' => ['/site/logout'],
                         'linkOptions' => ['data-method' => 'post']]]))
         ]);
@@ -62,7 +62,7 @@ app\assets\AppAsset::register($this);
 
     <footer style="background-color:transparent;" class="navbar-inverse">
         <div class="container">
-            <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+            <p class="pull-left">&copy; <?=\Yii::t('app', 'Webstart'); ?> <?= date('Y') ?></p>
             <p class="pull-right"><?= Yii::powered() ?></p>
         </div>
     </footer>

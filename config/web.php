@@ -3,14 +3,28 @@
 $params = require(__DIR__ . '/params.php');
 if ($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
     $db = require(__DIR__ . '/db-dev.php');
-} else 
+} else
     $db = require(__DIR__ . '/db.php');
 
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
+    'language' => 'uk-UA',
     'bootstrap' => ['log'],
     'components' => [
+      'i18n' => [
+        'translations' => [
+          'app*' => [
+            'class' => 'yii\i18n\PhpMessageSource',
+            'basePath' => '@app/messages',
+            //'sourceLanguage' => 'en-US',
+            'fileMap' => [
+              'app' => 'app.php',
+            //  'app/error' => 'error.php',
+            ],
+          ],
+        ],
+      ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,

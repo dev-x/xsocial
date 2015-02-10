@@ -28,7 +28,7 @@ use yii\helpers\Url;
         <h3 style="text-align:center;font-size:40px; color: black;"><font style="color:#008B66;"><?php echo $post->title; ?></font></h3>    
         <?php if(Yii::$app->session->hasFlash('PostEdit')): ?>
             <div id="zberezhenoq" class="breadcrumb">
-                <p style="font-size:18px;" id="zberezheno" class="active">Збережено</p>
+                <p style="font-size:18px;" id="zberezheno" class="active"><?= \Yii::t('app', 'Saved')?></p>
             </div>
         <?php endif; ?>
             <div  class="row" style="padding:12px 0px 10px 10px;margin-top:-20px;display:block;" >         
@@ -37,9 +37,10 @@ use yii\helpers\Url;
                                     <?php //echo $postImage->getImageUrl('small'); ?>
                                             <a href="<?php echo $postImage->getImageUrl('medium');?>" rel="prettyPhoto[<?php echo $post->id;?>]"><img align="center" style="float:left;margin: 7px 7px 7px 0;border:5px double #ddd; width:49%;" src="<?php echo $postImage->getImageUrl('medium');?>"></a>
                                     <?php endforeach; ?>
-                                    
+
                     <?php echo $post->content; ?>
             </div>
+<<<<<<< HEAD
         
         <?php
             if (!Yii::$app->user->isGuest){
@@ -57,12 +58,12 @@ use yii\helpers\Url;
             ?>
             <p class="text-right"><?php
                        if (Yii::$app->user->id == $post->user_id){
-                            echo Html::a('Update | ',array('post/eddit','id'=>$post->id));
+                            echo Html::a(\Yii::t('app', 'Update'), array('post/eddit', 'id'=>$post->id));
                         } 
                 ?>
                 <?php
-                        if ((Yii::$app->user->id == '1' ) || (Yii::$app->user->id === $post->user_id)){
-                            echo Html::a('Delete',array('post/delete','id'=>$post->id));
+                        if ((Yii::$app->user->id == '1') || (Yii::$app->user->id === $post->user_id)){
+                            echo Html::a(\Yii::t('app', 'Delete'), array('post/delete', 'id'=>$post->id));
                         } 
                 ?>
             </p>
@@ -73,14 +74,14 @@ use yii\helpers\Url;
             </div>
             <div style="padding:10px;background-color:#F7FFFE;" class="well bs-component">
                 <?php if (Yii::$app->user->isGuest) { ?>
-                        <?php echo Html::a ('Необхідно увійти', 'site/login'); } 
+                        <?php echo Html::a (\Yii::t('app', 'Need sign in to comment'), 'site/login'); }
                                             elseif (Yii::$app->user->identity->dozvil != 1) { ?>
-                    <h3>В даний час, ви не активовані</h3>
+                    <h3><?= \Yii::t('app', 'Sorry, but now your profile is inactive. You can simply wait or contact administrator')?></h3>
                                             <?php } else {?>
                 <?php $form = ActiveForm::begin(['id' => 'CommentNew', 'action' => Yii::$app->homeUrl.'comment/create' /*,'enableClientValidation'=>false*/]); ?>
                      <input type="hidden" name="Comment[parent_id]" value="<?= $post->id; ?>">
-                <?=  $form->field($modelNewComment, 'content')->textArea(['rows' => 1,  'placeholder' => 'Ваш коментар', 'id'=>'newComment']) ?>
-                <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']); ?>
+                <?=  $form->field($modelNewComment, 'content')->textArea(['rows' => 1,  'placeholder' => \Yii::t('app', 'Your comment'), 'id'=>'newComment']) ?>
+                <?= Html::submitButton(\Yii::t('app', 'Send'), ['class' => 'btn btn-primary']); ?>
                 <?php ActiveForm::end();}?>
             </div>
         <div id="commetslist">
@@ -93,13 +94,13 @@ use yii\helpers\Url;
                                 <text style='float:right'>
                                     <?php
                                         if ((Yii::$app->user->id == '1' ) || (Yii::$app->user->id === $comment->user_id)){
-                                                echo Html::a('Delete',array('comment/delete','id'=>$comment->id,'idP'=>$post->id));    
+                                                echo Html::a(\Yii::t('app', 'Delete'), array('comment/delete','id'=>$comment->id,'idP'=>$post->id));
                                         }
                                     ?>
                                 </text>
                             <div class="btn-default"> <?php echo $comment->content."</br>"; ?></div>
                         </div>
-            <?php endforeach; ?>        
+            <?php endforeach; ?>
         </div>
     </div>
     <div class="col-sm-3">

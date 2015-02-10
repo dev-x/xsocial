@@ -15,7 +15,7 @@ $this->title = $modelUser->username;
         <h2 style="margin-left:10px;"><a href="<%= titleUrl %>"><%= titlePost %></a></h2>
             <div class="post_images" >
                 <%= images %>
-            </div> 
+            </div>
             <div class="col-sm-12"><%= contentPost %></div>
             <ul class="list-inline">
                 <li><img style="width:20px;" src="<%= avatarUrl %>"></li>
@@ -23,8 +23,8 @@ $this->title = $modelUser->username;
                 <li><a href=""><span class="glyphicon glyphicon-time"></span><i><%= timePost %></i></a></li>
                 <li><a href=""><i class="glyphicon glyphicon-comment"></i><%= commentCountPost %> - Коментарів </a></li>
               </ul>
-        <button type="submit" class="btn btn-default pull-right"><a href="<%= titleUrl %>">Дочитати</a></button>
-    </div>    
+        <button type="submit" class="btn btn-default pull-right"><a href="<%= titleUrl %>"><?= \Yii::t('app', 'Read to the end')?></a></button>
+    </div>
 </script>
 <div class="row wrap">
     <div class="col-sm-9">
@@ -38,14 +38,14 @@ $this->title = $modelUser->username;
                         $action =  Url::toRoute('post/create');
                     ?>
                 <div style="padding:20px;margin-top:50px; background-color:#F7FFFE;" class="well bs-component" id="qw">
-                        <?php  /* needfix $form = ActiveForm::begin(['id' => 'PostNew', 'action' => $action, 'options' => ['data-edit' => $edit_action], 'beforeSubmit' => new \yii\web\JsExpression('submitPost')]); */ ?>  
-                        <?php $form = ActiveForm::begin(['id' => 'PostNew', 'action' => $action, 'options' => ['data-edit' => $edit_action,'data-new' => $action]]); ?>  
-                            <?= $form->field($modelNewPost, 'title')->textInput(['placeholder' => 'Заголовок нового поста']); ?>
+                        <?php  /* needfix $form = ActiveForm::begin(['id' => 'PostNew', 'action' => $action, 'options' => ['data-edit' => $edit_action], 'beforeSubmit' => new \yii\web\JsExpression('submitPost')]); */ ?>
+                        <?php $form = ActiveForm::begin(['id' => 'PostNew', 'action' => $action, 'options' => ['data-edit' => $edit_action,'data-new' => $action]]); ?>
+                            <?= $form->field($modelNewPost, 'title')->textInput(['placeholder' => \Yii::t('app', 'Title')]); ?>
                         <div id="newPostContent" <?php if (!$modelNewPost->id) echo 'style="display:none;"'; ?> >
-                            <?= $form->field($modelNewPost, 'content')->textArea(['rows' => 6 , 'placeholder' => 'Текст нового поста', 'style'=>'max-widht:800px;']); ?>
+                            <?= $form->field($modelNewPost, 'content')->textArea(['rows' => 6 , 'placeholder' => \Yii::t('app', 'Text of new post'), 'style'=>'max-widht:800px;']); ?>
                             <!--'class'=>'widgEditor nothing-->
-                            <?= Html::input('submit', 'submit_save', 'Save', ['class' => 'btn-submit btn btn-primary']); ?>
-                            <?= Html::input('submit', 'submit_publish', 'Publish', ['class' => 'btn-submit btn btn-primary']); ?>
+                            <?= Html::input('submit', 'submit_save',  \Yii::t('app', 'Save'), ['class' => 'btn-submit btn btn-primary']); ?>
+                            <?= Html::input('submit', 'submit_publish', \Yii::t('app', 'Publish'), ['class' => 'btn-submit btn btn-primary']); ?>
                             <div id="my-form-alert" class="alert alert-success" role="alert"></div>
                         <?php ActiveForm::end(); ?>
                     <?php \app\lib\LoadImageWidget::myRun($modelImage, 'image/create', 'form_upload_post_image', 'post', $modelNewPost->id?$modelNewPost->id:0 /*$modelNewPost->id*/); ?>
@@ -58,11 +58,11 @@ $this->title = $modelUser->username;
                             <?php endforeach; ?>
                         <?php endif; ?>
                     </div>
-                    <a href="#" class="upload_button" onClick="$('#form_upload_post_image .file_input').trigger('click'); return false;"><b>Добавити фото</b></a>
+                    <a href="#" class="upload_button" onClick="$('#form_upload_post_image .file_input').trigger('click'); return false;"><b><?= \Yii::t('app', 'Add Photo')?></b></a>
                     </div>
-                </div>        
+                </div>
                         <?php } ?>
-                
+
                 <div class="col-sm-12">
                     <div class="postsProfil">
                         <?php  echo $this->render('/site/_posts', array('data' => $modelUser->publishPosts/*,'pagination'=>$pagination*/)); ?>
