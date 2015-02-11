@@ -10,9 +10,9 @@ use yii\helpers\Url;
 </script>
         <?php if(Yii::$app->session->hasFlash('PostDeleted')): ?>
             <div class="breadcrumb">
-                <p style="font-size:18px;" class="active">Видалено</p>
+                <p style="font-size:18px;" class="active"><?=\Yii::t('app', 'Deleted')?></p>
             </div>
-            
+
         <?php endif; ?>
         <div id="postsl">
             <?php foreach ($data as $post) : ?>
@@ -56,7 +56,7 @@ use yii\helpers\Url;
 
                                     <ul class="list-inline">
                                             <li><a href=""><span class="glyphicon glyphicon-time"></span><i><?php echo $post->post_time ?></i></a></li>
-                                            <li><a href=""><i class="glyphicon glyphicon-comment"></i> <?php echo $post->ccount; ?> - Коментарів </a></li> 
+                                            <li><a href=""><i class="glyphicon glyphicon-comment"></i> <?= \Yii::t('app', '{n, plural, =0{ no comments} =1{one comment} other{# comments}}!', ['n' => $post->ccount]) ?> </a></li> 
                                             <?php
                                             if (!Yii::$app->user->isGuest){
                                                 if (Yii::$app->user->identity->isLikes($post->id,'post')){
@@ -73,7 +73,7 @@ use yii\helpers\Url;
                                             ?>
                                             <li><a href="" class="like_button" id='<?= $post->id ?>' data-id='<?= $post->id ?>' data-type='Post' data-action="<?= $action;?>"><i id="likes_view<?= $post->id; ?>" class="<?= $class;?>">-<?php echo $post->like_count; ?></i></a></li>
 
-                                            <li style="float:right" ><?php  echo Html::a("Дочитати", ['post/show', 'id'=>$post->id],['class' => 'btn btn-default pull-right']);  ?></li>
+                                            <li style="float:right" ><?php  echo Html::a(\Yii::t('app', 'Read to the end'), ['post/show', 'id'=>$post->id],['class' => 'btn btn-default pull-right']);  ?></li>
                                     </ul>
 
                     </div>    

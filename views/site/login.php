@@ -12,9 +12,9 @@ use yii\widgets\ActiveForm;
 ?>
 <div style="padding-left:20px; padding-bottom:40px;" class="row wrap">
     <div class="site-login">
-        <h1>Вхід</h1>
+        <h1><?= \Yii::t('app', 'Sign in')?></h1>
 
-        <p>Заповніть всі поля для входу:</p>
+        <p><?= \Yii::t('app', 'Fill in all fields to enter :')?></p>
 
         <?php $form = ActiveForm::begin([
             'id' => 'login-form',
@@ -30,10 +30,10 @@ use yii\widgets\ActiveForm;
         <?= $form->field($model, 'password')->passwordInput() ?>
         <div class="form-group">
     <div class="col-lg-offset-1 col-lg-11">
-        <?= Html::submitButton('Login', ['class' => 'btn btn-primary']) ?>
+        <?= Html::submitButton(\Yii::t('app', 'Sign in'), ['class' => 'btn btn-primary']) ?>
     </div>
     <div style="margin-top:-34px;" class="col-lg-offset-2 col-lg-11">
-        <p><a class="btn btn-primary" href="<?=  Url::toRoute('site/signup') ?>">Реєстрація</a></p>
+        <p><a class="btn btn-primary" href="<?=  Url::toRoute('site/signup') ?>"><?= \Yii::t('app', 'Sign up')?></a></p>
     </div>
         </div>
 

@@ -8,7 +8,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-$this->title = 'Edit User';
+$this->title = \Yii::t('app', 'Update');
 ?>
 <div style="padding:20px;margin-bottom:40px;" class="row wrap">
 <div class="page-header">

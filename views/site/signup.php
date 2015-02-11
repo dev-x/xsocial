@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
 
 ?>
 <div style="padding-bottom:50px;" class="row wrap">
-    <h1 style="margin-left:50px;">Реєстрація</h1>
+    <h1 style="margin-left:50px;"><?= \Yii::t('app', 'Sign up')?></h1>
     <div class="site-signup">
     <?php $stat = ['male' => 'Чоловіча', 'female' =>'Жіноча']; ?>
         <h1><?= Html::encode($this->title) ?></h1>
@@ -33,7 +33,7 @@ use yii\widgets\ActiveForm;
                                     <?= $form->field($model, 'stat')->RadioList($stat,['inline' =>true]); ?>
                                     <?= $form->field($model, 'group_id')->dropDownList($list) ?>
                     <div style="margin-left:150px;" class="form-group">
-                        <?= Html::submitButton('Signup', ['class' => 'btn btn-primary']) ?>
+                        <?= Html::submitButton(\Yii::t('app', 'SignUp'), ['class' => 'btn btn-primary']) ?>
                     </div>
                 <?php ActiveForm::end(); ?>
             </div>
