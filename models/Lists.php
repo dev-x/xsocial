@@ -21,7 +21,7 @@ class Lists extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'parent_id' => 'Parent_id',
-            'tup' => 'user_id',
+            'list_type' => 'List type',
             );
     }
 
@@ -33,7 +33,7 @@ class Lists extends \yii\db\ActiveRecord
     }
 
     public static function getList($type){
-        return self::find()->where(['tup' => $type])->asArray()->all();
+        return self::find()->where(['list_type' => $type])->asArray()->all();
     }
 
 }

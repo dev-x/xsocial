@@ -1,5 +1,5 @@
 <div class="row wrap">
-    <div class="col-sm-9">
+    <div class="col-sm-9 col-xs-12">
         <?php echo $this->render('_menu', array('modelUser' => $modelUser)); ?>
         <div id="kartinka" style="margin-top:15px;" class="col-sm-12">
                 <?php foreach ($modelUser->userImages as $image) : ?>
@@ -8,9 +8,9 @@
                 <?php endforeach; ?>
         </div>
     </div>
-    <div class="avatar">
-        <?php echo $this->render('_sidebar', array('modelUser' => $modelUser, 'modelImage' => $modelImage)); ?>
+    <div class="col-sm-3 col-xs-12">
+        <div>
+            <?php echo $this->render('_sidebar', array('modelUser' => $modelUser, 'modelImage' => $modelImage)); ?>
+        </div>
     </div>
 </div>
-<div id="shadow"></div>
-<div id="photo"></div>

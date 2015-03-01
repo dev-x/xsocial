@@ -108,7 +108,7 @@ class SiteController extends Controller
         $model = new User();
         $model->scenario = 'register';
         if ($model->load($_POST)){
-        $model->password_hash = \Yii::$app->security->generatePasswordHash($model->password);
+            $model->password_hash = \Yii::$app->security->generatePasswordHash($model->password);
                 $model->auth_key = 'key';
                 if ($model->save()) {
             if (Yii::$app->getUser()->login($model)) {

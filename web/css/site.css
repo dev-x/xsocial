@@ -1,8 +1,144 @@
-.trec{
-    border: 12px solid transparent;	
-    border-left: 20px solid grey;
-    opacity:0.3;
+.followerAvatar img{
+    border-radius: 4px;
+    width:100%;
+    box-shadow:0px 0px 5px #9d9d9d;
 }
+
+.followerspage{
+    margin-top:30px;
+    padding:0px;
+}
+
+.myfollowers{
+    margin-bottom:10px;
+    border-bottom:1px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+//
+
+//Sidebar
+.SibedarUserAvatar img{
+    border-radius: 4px;
+    width:160px;
+    box-shadow:0px 0px 5px #9d9d9d;
+    border:1px solid gray;
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+//
+
+//Post/Show/id
+.postShowContent{
+    margin-bottom:10px;
+}
+
+.PostShowCommentPanel{
+    padding:10px;
+    background-color:#F7FFFE;
+}
+
+.commentTextTime{
+    font-size:12px
+}
+
+.author-image {
+    border-radius: 24px;
+    box-shadow: 0 3px 5px #8D8D8D;
+    height: 48px;
+    width: 48px;
+}
+
+.commentText{
+    font-size:18px
+}
+
+.comment{
+    background-color:#fff
+}
+
+.PostShowTime1{
+    color:#008B66;
+    float:right;
+}
+
+.commentFloat{
+    float:right;
+}
+
+.PostShowTime2{
+  float:right;
+  color:#008B66;  
+}
+
+.PostShowInfoPanel{
+    padding:10px;
+    background-color:#F7FFFE;
+}
+
+.postShowImage img{
+    float:left;
+    margin: 7px 7px 7px 0;
+    border:5px double #ddd;
+    width:49%;
+}
+
+.postShowImage{
+    padding:12px 0px 10px 10px;
+    margin-top:-20px;
+    display:block;    
+}
+
+.postShowTitle{
+    text-align:center;
+    font-size:40px;
+    color:#008B66;
+}
+//
+
+//Posts All
+.usernameOnPost{
+    font-size:16px;
+}
+
+.like_count{
+    font-size:17px;
+}
+
+.usernameOnPost a{
+    color:green;
+}
+
+.postTitle{
+    font-size:25px;
+}
+
+.postFloatLeft{
+    float:left;
+}
+
+.postFloatRight{
+    float:right;
+}
+
+.userAvatarPost{
+    padding-left:0px;
+    padding-right:0px;
+}
+
+.userAvatarPost img{
+    width:68px;
+    border-radius: 2px;
+    box-shadow:0px 0px 5px #9d9d9d;
+}
+
+.Userslikes{
+    margin-top:20px;
+}
+
+.username a{
+    color:green;
+}
+//
 
 a.podskazka {
     position: relative; 
@@ -104,7 +240,7 @@ body {
 }
 .imgPicture {
     display: inline-block;
-    width: 685px;
+    width: 100%;
     height: 350px;
     overflow: hidden;
     border: 5px solid #FFFFFF;
@@ -113,7 +249,7 @@ body {
     margin: 10px;
   }
   .imgPicture img {
-    width: 685px;
+    width: 100%;
     border: none;
     margin: 0;
     padding: 0;
@@ -203,19 +339,13 @@ a:focus{
 	width:100%;	
 }
 .conte{
-	padding:6px;
-	padding-left:12px;
 	margin-top:5px;
 }
 .panel-heading{
 	margin-bottom:5px;
 	padding:0px;
 }
-.forimage img{
-	border:1px solid gray;
-	-webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-}
+
 .modal-content{
 	margin-top:20px;
 	padding-left:40px;
@@ -294,6 +424,7 @@ form.upload_image {
 #post_images {
     overflow: hidden;
     margin-top: 5px;
+    margin-bottom:10px;
 }
 
 #post_images div {

@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
  */
 
 ?>
-<div style="padding-left:20px; padding-bottom:40px;" class="row wrap">
+<div class="row wrap">
     <div class="site-login">
         <h1><?= \Yii::t('app', 'Sign in')?></h1>
 

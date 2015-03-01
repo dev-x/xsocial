@@ -14,15 +14,18 @@ $(document).ready(function(){
                         data: {id: $(this).data('id'), type: $(this).data('type')},
                         dataType: "json",
                         success: function(response){
+                            alert(response.modelid);
                             if (response.status == 'created'){
                                 $('#'+response.modelid).data('action', 'likeoff');
                                 $('#likes_view'+response.modelid).removeClass('glyphicon glyphicon-heart-empty');
-                                $('#likes_view'+response.modelid).addClass('glyphicon glyphicon-heart').text('-'+response.likesCount);
+                                $('#likes_view'+response.modelid).addClass('glyphicon glyphicon-heart');
+                                $('#like_count'+response.modelid).text(response.likesCount);
                             }
                             if (response.status == 'deleted'){
                                 $('#'+response.modelid).data('action', 'likeon');
                                 $('#likes_view'+response.modelid).removeClass('glyphicon glyphicon-heart');
-                                $('#likes_view'+response.modelid).addClass('glyphicon glyphicon-heart-empty').text('-'+response.likesCount);
+                                $('#likes_view'+response.modelid).addClass('glyphicon glyphicon-heart-empty');
+                                $('#like_count'+response.modelid).text(response.likesCount);
                             }
                         }
                     });
