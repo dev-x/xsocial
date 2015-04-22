@@ -7,27 +7,42 @@ $this->title = $modelUser->username;
 ?>
 <script type="text/template" id="template-image-element">
     <span align="center" class="imgPicture">
-        <img src="<%= src %>" alt="Картинка 1" border="0">
+        <img src="<%= src %>" rel="prettyPhoto" alt="Картинка 1" border="0">
     </span>
 </script>
 <script type="text/template" id="template-post-element">
-    <div id="createdpost" class="col-cm-12">
-        <h2 style="margin-left:10px;"><a href="<%= titleUrl %>"><%= titlePost %></a></h2>
-            <div class="post_images" >
-                <%= images %>
+    <div class="row">
+            <div class="col-sm-1 userAvatarPost">
+                <img src="<%= avatarUrl %>">
             </div>
-            <div class="col-sm-12"><%= contentPost %></div>
-            <ul class="list-inline">
-                <li><img style="width:20px;" src="<%= avatarUrl %>"></li>
-                <li><a href="<%= authorUrl %>"><%= authorName %></a></li>
-                <li><a href=""><span class="glyphicon glyphicon-time"></span><i><%= timePost %></i></a></li>
-                <li><a href=""><i class="glyphicon glyphicon-comment"></i><%= commentCountPost %> - Коментарів </a></li>
-              </ul>
-        <button type="submit" class="btn btn-default pull-right"><a href="<%= titleUrl %>"><?= \Yii::t('app', 'Read to the end')?></a></button>
-    </div>
+                    <div class="col-sm-11" id="parent_info">
+                        <div class="col-sm-12">
+                            <ul class="list-inline">
+                                <li><p class="usernameOnPost"><a href="<%= authorUrl %>"><%= authorName %></a></p></li>
+                                <li><span class="glyphicon glyphicon-time"></span><i><%= timePost %></i></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-12">
+                            <p class="postTitle"><a href="<%= titleUrl %>"><%= titlePost %></a></p>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="conte"><%= contentPost %></div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div style="margin-bottom:10px;" class="post_images" >
+                                  
+                            </div>
+                        </div>
+                        <ul class="list-inline">
+                                <li style="float:right;"><a href=""><i class="glyphicon glyphicon-comment"><%= commentCountPost %></i></a></li>                               
+                                <li style="float:right;"><a href="" class="like_button" id='<%= id %>' data-id='<%= id %>' data-type='Post' data-action="likeon"><%= likeСount %><i id="likes_view<%= id %>" class="glyphicon glyphicon-heart-empty"></i></a></li>
+                        </ul>
+                    </div>    
+                </div>   
+            <hr>
 </script>
 <div class="row wrap">
-    <div class="col-sm-9">
+    <div class="col-sm-9  col-xs-12">
             <?php echo $this->render('_menu', array('modelUser' => $modelUser)); ?>
             <?php
                 if (!Yii::$app->user->isGuest && (Yii::$app->user->id == $modelUser->id) && ($modelUser->dozvil == 1)) {
@@ -43,10 +58,11 @@ $this->title = $modelUser->username;
                             <?= $form->field($modelNewPost, 'title')->textInput(['placeholder' => \Yii::t('app', 'Title')]); ?>
                         <div id="newPostContent" <?php if (!$modelNewPost->id) echo 'style="display:none;"'; ?> >
                             <?= $form->field($modelNewPost, 'content')->textArea(['rows' => 6 , 'placeholder' => \Yii::t('app', 'Text of new post'), 'style'=>'max-widht:800px;']); ?>
+                            <?= $form->field($modelNewPost, 'post_type')->dropDownList($list); ?>
                             <!--'class'=>'widgEditor nothing-->
                             <?= Html::input('submit', 'submit_save',  \Yii::t('app', 'Save'), ['class' => 'btn-submit btn btn-primary']); ?>
                             <?= Html::input('submit', 'submit_publish', \Yii::t('app', 'Publish'), ['class' => 'btn-submit btn btn-primary']); ?>
-                            <div id="my-form-alert" class="alert alert-success" role="alert"></div>
+                            <!-- <div id="my-form-alert" class="alert alert-success" role="alert"></div>-->
                         <?php ActiveForm::end(); ?>
                     <?php \app\lib\LoadImageWidget::myRun($modelImage, 'image/create', 'form_upload_post_image', 'post', $modelNewPost->id?$modelNewPost->id:0 /*$modelNewPost->id*/); ?>
                     <div id="post_images" data-delurl="<?php echo Url::toRoute('image/delete'); ?>">
@@ -69,7 +85,9 @@ $this->title = $modelUser->username;
                     </div>
                 </div>
     </div>
-    <div class="avatar">
-        <?php echo $this->render('_sidebar', array('modelUser' => $modelUser, 'modelImage' => $modelImage)); ?>
+    <div class="col-sm-3 col-xs-12">
+        <div class="avatar">
+            <?php echo $this->render('_sidebar', array('modelUser' => $modelUser, 'modelImage' => $modelImage)); ?>
+        </div>
     </div>
 </div>

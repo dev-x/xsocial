@@ -1,14 +1,13 @@
 <?php
 $this->title = \Yii::t('app', 'Posts');
 ?>
-<div style="background-color:#fefeff;" class="row wrap">
-<!--<div class="col-sm-12">
-    <img style="width:100%;height:240px;border-radius:2%;" src="/nxblog/web/content/123.jpg">
-</div> -->
-    <div class="col-sm-9">
+<div class="row wrap">
+    <div class="col-sm-9 col-xs-12">
         <?php echo $this->render('/site/_posts', array('data' => $data, 'pagination' => $pagination)); ?>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-3 col-xs-12">
+    <div>
         <?php echo $this->render('/user/_sidebar'); ?>
+    </div>
     </div>
 </div>

@@ -142,6 +142,7 @@ class PostController extends Controller
 		$res['data']['commentCountPost'] = $post->ccount;
 		$res['data']['contentPost'] = mb_substr($post->content, 0, 300, "UTF-8");
 		$res['data']['avatarUrl'] = '';
+		$res['data']['likeСount'] = $post->like_count;
 		if (!empty($post->author->avatar)) {
 				$res['data']['avatarUrl'] = Yii::$app->homeUrl.str_replace(".", "_is.", $post->author->avatar);
 		}

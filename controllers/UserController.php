@@ -9,7 +9,9 @@ use app\models\User;
 use app\models\Image;
 use app\models\Post;
 use app\models\Likes;
+use app\models\Lists;
 use app\models\Follower;
+use yii\helpers\ArrayHelper;
 
 use yii\data\ActiveDataProvider;
 
@@ -55,9 +57,9 @@ class UserController extends Controller
         }
         if (!$post)
             $post = new Post();
-        
+        $list = ArrayHelper::map(Lists::getList('post_type'), 'id', 'name'); ;
 
-        return $this->render('show', ['modelUser' => $user, 'modelImage' => $image, 'modelNewPost' => $post]);
+        return $this->render('show', ['modelUser' => $user, 'modelImage' => $image, 'modelNewPost' => $post, 'list' => $list]);
     }
 
     public function actionImages($username=null)

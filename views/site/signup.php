@@ -9,13 +9,14 @@ use yii\widgets\ActiveForm;
  */
 
 ?>
-<div style="padding-bottom:50px;" class="row wrap">
-    <h1 style="margin-left:50px;"><?= \Yii::t('app', 'Sign up')?></h1>
+<div class="row wrap">
+    <div class="col-sm-12">
+        <h1><?= \Yii::t('app', 'Sign up')?></h1>
+    </div>
     <div class="site-signup">
     <?php $stat = ['male' => 'Чоловіча', 'female' =>'Жіноча']; ?>
         <h1><?= Html::encode($this->title) ?></h1>
         <div class="row">
-
             <div class="col-lg-12">
                 <?php $form = ActiveForm::begin(['id' => 'form-signup',
                     'options' => ['class' => 'form-horizontal'],
