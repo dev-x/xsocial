@@ -27,8 +27,8 @@ app\assets\AppAsset::register($this);
             'brandUrl' => Yii::$app->user->isGuest ? ['/site/login']:
                 ['/users/'.Yii::$app->user->identity->username.''],
             'options' => [
-                'class' => 'navbar-inverse navbar-fixed-top',
-                'style' => ' background-color:#00936b;',
+                'class' => 'navbar-inverse navbar-fixed-top menu_top',
+                //'style' => ' background-color:#00936b;',
             ],
         ]);
         echo Nav::widget([

@@ -5,18 +5,18 @@ use yii\widgets\LinkPager;
 use yii\helpers\Url;
 
 ?>
-        <?php if(Yii::$app->session->hasFlash('PostDeleted')): ?>
-            <div class="breadcrumb">
-                <p style="font-size:18px;" class="active"><?=\Yii::t('app', 'Deleted')?></p>
-            </div>
-        <?php endif; ?>
-        <div id="postsl" class="col-sm-12">
+    <?php if(Yii::$app->session->hasFlash('PostDeleted')): ?>
+        <div class="breadcrumb">
+            <p style="font-size:18px;" class="active"><?=\Yii::t('app', 'Deleted')?></p>
+        </div>
+    <?php endif; ?>
+        <div id="postsl" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <?php if($data != null) foreach ($data as $post) : ?>
                 <div class="row">
-                    <div class="col-sm-1 userAvatarPost">
+                    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2 userAvatarPost">
                         <img src="<?= $post->author->getAvatarUrl(); ?>">
                     </div>
-                    <div class="col-sm-11" id="parent_info">
+                    <div class="col-lg-11 col-md-11 col-sm-10 col-xs-10" id="parent_info">
                         <div class="col-sm-12">
                             <ul class="list-inline">
                                 <li><p class="usernameOnPost"><?= HTML::a($post->author->username, ['user/show', 'username' => $post->author->username]) ?></p></li>
@@ -81,6 +81,6 @@ use yii\helpers\Url;
                 }
             ?>
         </div>
-<div class="postFloatLeft">
-        <?php if (isset($pagination)){ echo LinkPager::widget(['pagination'=>$pagination]);} ?>
-</div>
+        <div class="postFloatLeft">
+                <?php if (isset($pagination)){ echo LinkPager::widget(['pagination'=>$pagination]);} ?>
+        </div>

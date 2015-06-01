@@ -105,6 +105,9 @@ class SiteController extends Controller
     public function actionSignup()
     {
         $list = ArrayHelper::map(Lists::getList('group'), 'id', 'name'); ;
+        $list_city = ArrayHelper::map(Lists::getList('city'), 'id', 'name');
+        $list_role = ArrayHelper::map(Lists::getList('role'), 'id', 'name');
+        $list_department = ArrayHelper::map(Lists::getList('department'), 'id', 'name');
         $model = new User();
         $model->scenario = 'register';
         if ($model->load($_POST)){
@@ -119,6 +122,9 @@ class SiteController extends Controller
         return $this->render('signup', [
             'model' => $model,
             'list' => $list,
+            'list_city' => $list_city,
+            'list_role' => $list_role,
+            'list_department' => $list_department,
         ]);
     }
 

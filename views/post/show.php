@@ -22,7 +22,7 @@ use yii\helpers\Url;
 </script>
 
 <div class="row wrap">
-    <div class="col-sm-9 col-xs-12 ShowPostComment">
+    <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12 ShowPostComment">
         <div class="row postShow">
         <div class="col-sm-12">
             <p class="postShowTitle"><?php echo $post->title; ?></p>    
@@ -125,7 +125,7 @@ use yii\helpers\Url;
             </div>    
         </div>
     </div>
-    <div class="col-sm-3 col-xs-12">
+    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
         <div class="col-sm-12">
                 <?php echo $this->render('/user/_sidebar', array('author' => $post->author)); ?>
         </div>

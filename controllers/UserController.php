@@ -11,6 +11,7 @@ use app\models\Post;
 use app\models\Likes;
 use app\models\Lists;
 use app\models\Follower;
+use app\models\Messages;
 use yii\helpers\ArrayHelper;
 
 use yii\data\ActiveDataProvider;
@@ -58,8 +59,9 @@ class UserController extends Controller
         if (!$post)
             $post = new Post();
         $list = ArrayHelper::map(Lists::getList('post_type'), 'id', 'name'); ;
+        $list_private = ArrayHelper::map(Lists::getList('privacy_post'), 'id', 'name'); ;
 
-        return $this->render('show', ['modelUser' => $user, 'modelImage' => $image, 'modelNewPost' => $post, 'list' => $list]);
+        return $this->render('show', ['modelUser' => $user, 'modelImage' => $image, 'modelNewPost' => $post, 'list' => $list, 'list_private' => $list_private]);
     }
 
     public function actionImages($username=null)
@@ -109,6 +111,22 @@ class UserController extends Controller
         $image = new Image();
         return $this->render('mylikes', ['modelUser' => $user, 'modelImage' => $image, 'likepost' => $model->getModels(), 'pagination' => $model->pagination]);
     }
+
+    public function actionMessages($username=null)
+    {
+        $messages = Messages::find()->where(['user_id' => Yii::$app->user->identity->id])->orderBy(' `created` ASC')->all();        
+        $messages2 = Messages::find()->where(['friend_id' => Yii::$app->user->identity->id])->orderBy(' `created` ASC')->all();        
+        
+        $list_user_friend = ArrayHelper::map($messages, 'created', 'content', 'friend_id');
+        $list_user_friend2 = ArrayHelper::map($messages2, 'created', 'content', 'user_id');
+        
+        $last_message_sort = \app\lib\Message::messageLastSort($list_user_friend, $list_user_friend2);
+        
+        $user = User::findByUsername($username);
+        
+        $image = new Image();
+        return $this->render('mymessages', ['modelUser' => $user, 'modelImage' => $image, 'mymessages' => $last_message_sort]); 
+    }
     
     public function actionEdit($id)
     {
@@ -119,7 +137,10 @@ class UserController extends Controller
                         $this->redirect(array('user/profile', 'username'=>$model->username));
                     }
                 }else{
-                    echo $this->render('edit', array('model' => $model));
+                    $list = ArrayHelper::map(Lists::getList('group'), 'id', 'name');
+                    $list_city = ArrayHelper::map(Lists::getList('city'), 'id', 'name');
+                    
+                    echo $this->render('edit', array('model' => $model, 'list' => $list, 'list_city' => $list_city));
             }
         }
         

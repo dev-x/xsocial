@@ -1,5 +1,63 @@
 $(document).ready(function(){
-    
+             
+            $('.mymessages').mouseenter(function(){
+                $(this).css('background-color', '#E3FAF8');
+            });
+             
+            $('.mymessages').mouseleave(function(){
+                $(this).css('background-color', 'transparent');
+            });
+            
+            $('.mymessagesfriend').mouseenter(function(){
+                $(this).css('background-color', '#E3FAF8');
+            });
+             
+            $('.mymessagesfriend').mouseleave(function(){
+                $(this).css('background-color', 'transparent');
+            });
+            
+            $('.mymessages').click(function(){
+                var data_u = $(this).data('action')
+                var url = "messages/"+data_u;
+                $(location).attr('href',url);
+            });
+            
+            $('.field-user-group').css('display','none');
+            $('.field-user-vnz').css('display','none');
+            
+            $("input[name='User[role_id]'").change(function(){
+                //alert($(this).val());
+                if($(this).val() == 37){
+                    $('.field-user-group').css('display','none');
+                    $('.field-user-vnz').css('display','block');
+                    $('.field-user-group option:selected').each(function(){
+                        this.selected=false;
+                    });                    
+                }else{
+                    $('.field-user-group').css('display','block');
+                    $('.field-user-vnz').css('display','none');
+                    $('.field-user-vnz option:selected').each(function(){
+                        this.selected=false;
+                    });
+                }
+            });
+                $('.deleteButton').click(function(){
+                    var id_m = $(this).data('action');
+                    console.log(id_m);
+                    $.ajax({
+                        type:'POST',
+                        url: '/messages/delete',
+                        data: {id: $(this).data('action')},
+                        dataType: "json",
+                        success: function(response){
+                            if(response == 'good'){
+                                $('#'+id_m).hide(1000);
+                            };
+                             
+                        }
+                    });
+                });
+                
                 $('.like_button').click(function(e){
                     e.preventDefault();
                     
@@ -14,7 +72,6 @@ $(document).ready(function(){
                         data: {id: $(this).data('id'), type: $(this).data('type')},
                         dataType: "json",
                         success: function(response){
-                            alert(response.modelid);
                             if (response.status == 'created'){
                                 $('#'+response.modelid).data('action', 'likeoff');
                                 $('#likes_view'+response.modelid).removeClass('glyphicon glyphicon-heart-empty');
@@ -142,6 +199,11 @@ $(document).ready(function(){
         return submitPost($(this));
        // return false;
     });
+    
+    $('#MessageNew').on('beforeSubmit', function () {
+        return submitMessages($(this));
+    });
+    
     $('#CommentNew').on('beforeSubmit', function () {
         return submitComment($(this));
         // return false;
@@ -171,6 +233,17 @@ $(document).ready(function(){
       event.stopPropagation();
     });
 */
+
+var MessagesModel = Backbone.Model.extend({});
+
+var MessagesView = Backbone.View.extend({
+   // initialize:function(){
+   //     this.render();
+   // },
+    render: function(){
+        this.$el.html( _.template($('#template-messages-element').html(), this.model.toJSON()));
+    }
+});
 
 var CommentModel = Backbone.Model.extend({});
 
@@ -279,6 +352,39 @@ function submitComment($form) {
     });
     return false;
 }
+
+function submitMessages($form) {
+    
+    var m_method=$form.attr('method');
+    var m_action=$form.attr('action');
+    var m_data=$form.serialize();
+    console.log(m_data);
+    $.ajax({
+        type: m_method,
+        url: m_action,
+        data: m_data,
+        dataType: "json",
+        success: function(response){
+            //alert(response);
+            console.log(response);
+            if (response.status == 'ok'){
+                document.getElementById("MessageNew").reset();
+                var messageModel = new MessagesModel(response.data);
+                var messageView = new MessagesView({model: messageModel});
+                messageView.render();
+                console.log(messageView.el);
+                $('.messageList').prepend(messageView.el);
+                //$('#createdcomment').slideDown().removeAttr('id');
+            }    
+            return false;
+        },
+        error: function(response) {
+            return false;
+        }
+    });
+    return false;
+}
+
 
 function DoUpload(file_element) {
         //$(form).find('.file_input')

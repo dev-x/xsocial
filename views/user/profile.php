@@ -26,7 +26,7 @@
             <span style="color:green;" class="glyphicon glyphicon-envelope"> </span><?php if($modelUser->email != null){ echo \Yii::t('app', 'Email').":<strong>".$modelUser->email.""; } ?></strong>
         </div>
         <div class="col-sm-12">
-            <span style="color:green;" class="glyphicon glyphicon-envelope"></span><?php if($modelUser->city != null){ echo \Yii::t('app', 'City').":<strong>".$modelUser->city."</br>"; } ?></strong>
+            <span style="color:green;" class="glyphicon glyphicon-envelope"></span><?php if($modelUser->city_id != null){ echo \Yii::t('app', 'City').":<strong>".$modelUser->city_id."</br>"; } ?></strong>
             <?php if($modelUser->vnz != null){ echo \Yii::t('app', 'Higt School').":<strong>".$modelUser->vnz."</br>"; } ?></strong>
             <?php if($modelUser->group != null){ echo \Yii::t('app', 'Class').":<strong>".$modelUser->group."</br>"; } ?></strong>
             <span style="color:green;" class="glyphicon glyphicon-calendar"></span><?php if($modelUser->birthday != 0000-00-00){ echo \Yii::t('app', 'Birthday').":<strong>".$modelUser->birthday."</br>"; } ?></strong>

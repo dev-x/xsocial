@@ -3,83 +3,99 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Messages;
-use yii\data\ActiveDataProvider;
 use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
+use app\models\Messages;
+use app\models\User;
+use yii\helpers\Html;
+use yii\helpers\Url;
+use app\models\Image;
+use app\models\Post;
+use app\models\Likes;
+use app\models\Lists;
+use app\models\Follower;
+use yii\helpers\ArrayHelper;
+use yii\data\ActiveDataProvider;
 
 class MessagesController extends Controller
 {
-    public function behaviors()
+    public function actions()
     {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-        ];
+        return array(
+            'error' => array(
+                'class' => 'yii\web\ErrorAction',
+            ),
+            'captcha' => array(
+                'class' => 'yii\captcha\CaptchaAction',
+                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+            ),
+        );
     }
 
-    public function actionIndex()
+    public function actionIndex($username,$request=null)
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Messages::find(),
-        ]);
+        $users = User::find()->all();
+        $friend = User::find()->where(['username' => $request])->one();
+        $query = Messages::find()->where(['user_id' => Yii::$app->user->identity->id, 'friend_id' => $friend['id']])->orWhere(['user_id' => $friend['id'], 'friend_id' => Yii::$app->user->identity->id])->orderBy(' `created` DESC');
+        $model = new ActiveDataProvider(['query' => $query, 'pagination' => ['pageSize' => 10]]);
 
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
+        $modelNewMessage = new Messages;
+        $user = User::findByUsername($username);
+        
+        $image = new Image();
+        echo $this->render('../user/mymessagesdialog', [
+            'modelNewMessage' => $modelNewMessage,
+            'modelUser' => $user,
+            'modelFriend' => $friend,
+            'modelImage' => $image,
+            'messages' => $model->getModels(), 
+            'pagination' => $model->pagination
         ]);
     }
-
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
+    
     public function actionCreate()
     {
         $model = new Messages();
+        
+        if ($model->load($_POST) && !Yii::$app->user->isGuest) {
+            $model->content = $_POST['Messages']['content'];
+            $model->created = date("Y-m-d H:i:s");
+            $model->stanRead = '1';
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+            if($model->save()) {
+                $res['status'] = 'ok';
+                if(Yii::$app->request->isAjax) {
+                    $res['data']['user_id'] = $model->user_id;
+                    $res['data']['friend_id'] =  $model->friend_id;
+                    $res['data']['content'] = $model->content;
+                    $res['data']['created'] =  $model->created;
+                    $message = Messages::find()->where(['user_id' => $model->user_id, 'friend_id' => $model->friend_id, 'created' => $model->created])->one();
+                    $user_created = User::find()->where(['id' => $model->user_id])->one();
+                    
+                    $res['data']['id'] = $message['id'];
+                    $res['data']['avatar'] = $user_created['avatar'];
+                }
+            } else $res['status'] = 'error2';
+        } else $res['status'] = 'error1';
+           // if(Yii::$app->request->isAjax) 
+            echo json_encode($res);
+        //else */
+          //  $this->redirect(array('post/show', 'id'=>$model->parent_id));
+    }   
+        
+    public function actionDelete()
+    {   
+        $message = Messages::findOne($_POST['id']);
+        if($message->delete()){
+            $res = 'good';
+        }else{
+            $res = 'bad';
         }
+            
+        echo json_encode($res);
+        //$this->redirect(array('post/show', 'id'=>$idP));
+        //$this->redirect(array('/posts'));
+        //$this->loadModel($id)->delete();
+        //$this->redirect(array('post/show', 'id'=>$model->parent_id));        
     }
-
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
-    }
-
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
-    }
-
-    protected function findModel($id)
-    {
-        if (($model = Messages::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
-    }
+    
 }

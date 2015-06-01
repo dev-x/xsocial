@@ -11,9 +11,10 @@ $form = ActiveForm::begin(array('options' => array('class' => 'form-vertical')))
     echo $form->field($model, 'first_name')->textInput(array());
     echo $form->field($model, 'last_name')->textInput(array());
     echo $form->field($model, 'email')->textInput(array());
-    echo $form->field($model, 'city')->textInput(array());
+    echo $form->field($model, 'address')->textInput(array());
+    echo $form->field($model, 'city_id')->dropDownList($list_city);
     echo $form->field($model, 'vnz')->textInput(array());
-    echo $form->field($model, 'group_id')->textInput(array());
+    echo $form->field($model, 'group')->dropDownList($list);
     echo $form->field($model, 'mobil')->textInput(array());
     echo $form->field($model, 'skype')->textInput(array());
     echo $form->field($model, 'myCredo')->textInput(array());

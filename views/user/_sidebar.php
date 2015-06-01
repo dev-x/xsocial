@@ -6,7 +6,8 @@ use app\components\LatestNews;
 </div>
 <?php
     $a = 0;
-    if(strpos($this->context->getRoute(),'user') === 0) { $a = 1; $userX = $modelUser; }
+    if(strpos($this->context->getRoute(),'user') === 0) { $a = 1; $userX = $modelUser;}
+    if(strpos($this->context->getRoute(),'index') == '9'){$a = 1; $userX = $modelUser;}
     if($this->context->getRoute() == 'post/show') { $a = 2; $userX = $author; }
     if ($a > 0) : 
 ?>

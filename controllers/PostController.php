@@ -40,7 +40,7 @@ class PostController extends Controller
             $modelNewComment = new Comment;
             $comments = $post->getComments()->all();
         }
-
+        
         echo $this->render('show', array(
                 'post' => $post,
                 'comments' => $comments,

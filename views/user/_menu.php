@@ -22,11 +22,17 @@ use yii\helpers\Html;
         $class2 = ($this->context->getRoute() == 'user/profile')?'btn btn-default':'btn btn-primary'; 
         $class3 = ($this->context->getRoute() == 'user/myfollows')?'btn btn-default':'btn btn-primary'; 
         $class4 = ($this->context->getRoute() == 'user/mylikes')?'btn btn-default':'btn btn-primary'; 
+        $class5 = ($this->context->getRoute() == 'user/messages')?'btn btn-default':'btn btn-primary'; 
+         
         ?>
+    
         <?= HTML::a(\Yii::t('app', 'Posts'), array('user/show', 'username' => $modelUser->username),array('class'=>$class)); ?>
         <?= HTML::a(\Yii::t('app', 'Photos'), array('user/images', 'username' => $modelUser->username),array('class'=>$class1));?>
         <?= HTML::a(\Yii::t('app', 'Profile'), array('user/profile', 'username' => $modelUser->username),array('class'=>$class2));?>
         <?= HTML::a(\Yii::t('app',$followerPage), array('user/myfollows', 'username' => $modelUser->username),array('class'=>$class3));?>
+        <?php if(Yii::$app->user->identity->id == $modelUser->id){
+           echo HTML::a(\Yii::t('app','My messages'), array('user/messages', 'username' => $modelUser->username),array('class'=>$class5));
+        } ?>
         <?php if(Yii::$app->user->identity->id == $modelUser->id){
            echo HTML::a(\Yii::t('app',"my likes"), array('user/mylikes', 'username' => $modelUser->username),array('class'=>$class4));
         } ?>

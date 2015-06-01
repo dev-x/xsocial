@@ -10,6 +10,8 @@ $this->title = $modelUser->username;
         <img src="<%= src %>" rel="prettyPhoto" alt="Картинка 1" border="0">
     </span>
 </script>
+<?php /*  echo $this->render('post-template-'.Yii::$app->params['type'])); */ ?>
+
 <script type="text/template" id="template-post-element">
     <div class="row">
             <div class="col-sm-1 userAvatarPost">
@@ -52,13 +54,16 @@ $this->title = $modelUser->username;
                     else
                         $action =  Url::toRoute('post/create');
                     ?>
-                <div style="padding:20px;margin-top:50px; background-color:#F7FFFE;" class="well bs-component" id="qw">
+                <div class="well bs-component form_post" id="qw">
                         <?php  /* needfix $form = ActiveForm::begin(['id' => 'PostNew', 'action' => $action, 'options' => ['data-edit' => $edit_action], 'beforeSubmit' => new \yii\web\JsExpression('submitPost')]); */ ?>
                         <?php $form = ActiveForm::begin(['id' => 'PostNew', 'action' => $action, 'options' => ['data-edit' => $edit_action,'data-new' => $action]]); ?>
                             <?= $form->field($modelNewPost, 'title')->textInput(['placeholder' => \Yii::t('app', 'Title')]); ?>
                         <div id="newPostContent" <?php if (!$modelNewPost->id) echo 'style="display:none;"'; ?> >
                             <?= $form->field($modelNewPost, 'content')->textArea(['rows' => 6 , 'placeholder' => \Yii::t('app', 'Text of new post'), 'style'=>'max-widht:800px;']); ?>
                             <?= $form->field($modelNewPost, 'post_type')->dropDownList($list); ?>
+                            <?= $form->field($modelNewPost, 'privacy_id')->dropDownList($list_private); ?>
+                            <?php //= $form->field($modelNewPost, 'coordinates_lat')->textInput(['placeholder' => \Yii::t('app', 'coordinates lat')]); ?>
+                            <?php //= $form->field($modelNewPost, 'coordinates_lng')->textInput(['placeholder' => \Yii::t('app', 'coordinates lng')]); ?>
                             <!--'class'=>'widgEditor nothing-->
                             <?= Html::input('submit', 'submit_save',  \Yii::t('app', 'Save'), ['class' => 'btn-submit btn btn-primary']); ?>
                             <?= Html::input('submit', 'submit_publish', \Yii::t('app', 'Publish'), ['class' => 'btn-submit btn btn-primary']); ?>

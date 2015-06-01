@@ -46,6 +46,7 @@ $config = [
                 'users/<username:\w+>'=>'user/show',
                 'users/<username:\w+>/posts'=>'post/index',
                 'users/<username:\w+>/<action:\w+>'=>'user/<action>',
+                'users/<username:\w+>/messages/<request:\w+>'=>'messages/index',
 
             ],
         ],

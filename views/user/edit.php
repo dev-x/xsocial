@@ -14,5 +14,5 @@ $this->title = \Yii::t('app', 'Update');
 <div class="page-header">
     <h1><?php echo Html::encode($this->title); ?></h1>
 </div>
-<?php  echo $this->render('_form', array('model' => $model)) ?>
+    <?php  echo $this->render('_form', array('model' => $model, 'list' => $list, 'list_city' => $list_city)) ?>
 </div>
