@@ -44,7 +44,7 @@ $this->title = $modelUser->username;
             <hr>
 </script>
 <div class="row wrap">
-    <div class="col-sm-9  col-xs-12">
+    <div class="col-sm-9  col-xs-12 leftBlock">
             <?php echo $this->render('_menu', array('modelUser' => $modelUser)); ?>
             <?php
                 if (!Yii::$app->user->isGuest && (Yii::$app->user->id == $modelUser->id) && ($modelUser->dozvil == 1)) {
@@ -90,7 +90,7 @@ $this->title = $modelUser->username;
                     </div>
                 </div>
     </div>
-    <div class="col-sm-3 col-xs-12">
+    <div class="col-sm-3 col-xs-12 rightBlock">
         <div class="avatar">
             <?php echo $this->render('_sidebar', array('modelUser' => $modelUser, 'modelImage' => $modelImage)); ?>
         </div>

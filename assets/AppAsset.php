@@ -19,7 +19,7 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         '//xcdn.webstart.in.ua/css/prettyPhoto.css',
-        'css/site_stepan.css',
+        'css/site.css',
     ];
     public $js = [
         '//xcdn.webstart.in.ua/js/underscore.js',

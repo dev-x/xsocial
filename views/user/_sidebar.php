@@ -17,7 +17,7 @@ use app\components\LatestNews;
             <?= HTML::a($userX->first_name." ".$userX->last_name, ['user/show', 'username' => $userX->username]); ?>
         </p>
         <div id="forimage" class="SibedarUserAvatar">
-            <img style="border:1px solid grey;border-radius: 4px;width:100%;box-shadow:0px 0px 5px #9d9d9d;-webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);" src="<?= $userX->getAvatarUrl('bigicon'); ?>">
+            <img style="border-radius: 1px;width:100%;box-shadow:0px 0px 5px #337ab7;-webkit-box-shadow: 0 5px 5px #337ab7;" src="<?= $userX->getAvatarUrl('bigicon'); ?>">
         </div>
         <?php if (!Yii::$app->user->isGuest && ($userX->id == Yii::$app->user->id) && ($a == 1)) : ?>
         <?php \app\lib\LoadImageWidget::myRun($modelImage, 'image/create', 'form_upload_avatar', 'user', $userX->id); ?>
@@ -27,9 +27,6 @@ use app\components\LatestNews;
                 ?>
         <!--<button id="upload_button">Upload Image</button>-->
         <?php endif; ?>
-            <h5 style="color:#008B66;"><i class="glyphicon glyphicon-calendar"><b><?= \Yii::t('app', 'Birthday') ?>:</b></i><?php echo $userX->birthday; ?></h5>
-            <h5 style="color:#008B66;"><i class="glyphicon glyphicon-home"><b><?= \Yii::t('app', 'Higt School') ?>:</b></i><?php echo $userX->vnz; ?></h5>
-            <h5 style="color:#008B66;"><i class="glyphicon glyphicon-book"><b><?= \Yii::t('app', 'Class') ?>:</b></i><?php echo $userX->group; ?></h5>
              <?php if (!Yii::$app->user->isGuest && ($userX->id != Yii::$app->user->id)){
                 if (Yii::$app->user->identity->isFollowingTo($userX->id)){
                     $but_action = 'unfollow';

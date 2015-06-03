@@ -3,7 +3,7 @@
     use yii\widgets\LinkPager;
 ?>
 <div class="row wrap">
-    <div class="col-sm-9 col-xs-12">
+    <div class="col-sm-9 col-xs-12 leftBlock">
         <?php echo $this->render('_menu', array('modelUser' => $modelUser)); ?>
         <div class="col-sm-12 followerspage">
         <h1>Messages</h1>

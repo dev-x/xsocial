@@ -17,10 +17,9 @@
 </script>
 
 <div class="row wrap">
-    <div class="col-sm-9 col-xs-12">
+    <div class="col-sm-9 col-xs-12 leftBlock">
         <?php  echo $this->render('_menu', array('modelUser' => $modelUser)); ?>
         <div class="col-sm-12" style='margin-bottom:20px;'>
-            <h1>Messagess</h1>
             <?php $form = ActiveForm::begin(['id' => 'MessageNew', 'action' => Yii::$app->homeUrl.'messages/create']); ?>
             <input type="hidden" name="Messages[friend_id]" value="<?= $modelFriend->id; ?>">
             <input type="hidden" name="Messages[user_id]" value="<?= $modelUser->id; ?>">
@@ -32,7 +31,7 @@
             <?php
                 foreach($messages as $message){
                     $user_data = Yii::$app->user->identity->findIdentity($message['user_id']);?>
-                        <div class="well comment mymessagesfriend" id="<?= $message['id'] ?>" style='padding:10px; margin-bottom:10px;'>
+                        <div class="comment mymessagesfriend" id="<?= $message['id'] ?>" style='padding:10px'>
                              <div class="commentFloat"><img class="author-image" src="/<?= $user_data['avatar'];?>"></div>
                              <text class='text-primary commentText'>
                                  <text class='text-info commentTextTime'> <?= $message['created'] ?></text>

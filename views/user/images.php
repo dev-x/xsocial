@@ -1,5 +1,5 @@
 <div class="row wrap">
-    <div class="col-sm-9 col-xs-12">
+    <div class="col-sm-9 col-xs-12 leftBlock">
         <?php echo $this->render('_menu', array('modelUser' => $modelUser)); ?>
         <div id="kartinka" style="margin-top:15px;" class="col-sm-12">
                 <?php foreach ($modelUser->userImages as $image) : ?>

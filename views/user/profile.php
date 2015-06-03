@@ -2,7 +2,7 @@
     use yii\helpers\Html;
 ?>
 <div class="row wrap">
-        <div class="col-sm-9 col-xs-12">
+        <div class="col-sm-9 col-xs-12 leftBlock">
         <?php echo $this->render('_menu', array('modelUser' => $modelUser)); ?>
             <div class="page-header clearfix">
                 <div style="width:80%;float:left;font-color:green;" class="col-sm-10"><p style="font-size:18px;"><?php echo HTML::a(\Yii::t('app', 'Main info'));?></p></div>
