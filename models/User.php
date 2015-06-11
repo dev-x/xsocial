@@ -31,8 +31,9 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             'login' => ['username', 'password'],
-            'register' => ['username', 'email', 'password','mobil','first_name','last_name','group', 'role_id'],
-            'profile' => ['first_name','last_name','email','city_id', 'group', 'vnz','groupVnz','mobil','skype','myCredo','myInfo']
+            'register' => ['username', 'email', 'password','mobil','first_name','last_name','group', 'role_id', 'vnz'],
+            'profile' => ['first_name','last_name','email','city_id', 'group', 'vnz','groupVnz','mobil','skype','myCredo','myInfo'],
+            'activeted' => ['active']
         ];
     }
     

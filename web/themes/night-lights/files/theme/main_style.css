@@ -1,0 +1,712 @@
+
+/* Resets
+--------------------------------------------------------------------------------*/
+
+ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, body, html, p, blockquote, fieldset, input {
+	margin: 0;
+	padding: 0;
+}
+
+ul {
+	list-style: none;
+}
+
+fieldset {
+	border: 0;
+}
+
+a img {
+	border: 0;
+}
+
+.clear {
+	clear: both;
+}
+
+/* General Styling and Structure
+--------------------------------------------------------------------------------*/
+
+body {
+	background: url(bodybg.jpg) 50% -8px no-repeat;
+	background-color: #000000;
+	font-family: arial, sans-serif;
+	font-size: 12px;
+	color: #ccc;
+	margin: 0;
+	padding: 0;
+}
+
+p {
+	color: #cccccc;
+	font-size: 13px;
+	line-height: 1.5;
+	padding: .5em 0;
+}
+
+h1 {
+	font-size: 30px;
+	font-weight: bold;
+	color: #fff;
+	padding: .5em 0 .2em 0;
+}
+
+h2 {
+	font-family: arial, sans-serif;
+	font-size: 24px;
+	font-weight: normal;
+	color: #fff;
+	padding: .5em 0 .2em 0;
+}
+
+blockquote {
+	font-style:italic;
+	border-left:4px solid #aaa;
+	margin:10px 0 10px 0;
+	padding-left:20px;
+	line-height:1.5;
+}
+
+#wrapper {
+	width: 960px;
+	margin: 0 auto;
+}
+
+#header {
+	width: 960px;
+	min-height: 156px;
+}
+
+#header a {
+	color: #666666;
+	text-decoration: none;
+}
+
+#header a:hover {
+	color: #ffffff;
+}
+
+#logo,
+#logo a {
+	font-size: 30px;
+	color: #fff;
+	text-decoration: none;
+}
+
+#content {
+	width: 900px;
+	height: auto !important;
+	min-height: 500px;
+	_height: 500px;
+	padding: 19px 30px 25px 30px;
+	border-bottom: 1px #292929 solid;
+	background: url(contentbg.png) repeat-y;
+	_background: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='files/theme/contentbg.png', sizingMethod='scale');
+}
+
+#content a,
+#banner a {
+	color: #ff6633;
+	text-decoration: none;
+}
+
+#content a:hover,
+#banner a:hover {
+	text-decoration: underline;
+}
+
+#banner {
+	width: 920px;
+	background: url(contentbg.png) repeat-y;
+	_background: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='files/theme/contentbg.png', sizingMethod='scale');
+	padding: 20px 20px 0 20px;
+}
+
+/* Navigation
+--------------------------------------------------------------------------------*/
+
+#navigation {
+	width: 960px;
+	height: 45px;
+	clear: both;
+	padding: 1px 0 0 0;
+	background: url(navbg.png) no-repeat;
+	_background: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='files/theme/navbg.png', sizingMethod='crop');
+}
+
+#navigation ul li {
+	float: left;
+	height: 29px;
+	text-align: center;
+	padding: 14px 35px 0 35px;
+	background: url(navlibg.jpg) right no-repeat;
+}
+
+#navigation ul li a {
+	color: #fff;
+	font-size: 14px;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#navigation ul li a:hover,
+#navigation ul li#active a {
+	color: #ff6633;
+}
+
+/* Navigation Drop-Down Menu Customization
+--------------------------------------------------------------------------------*/
+
+#wsite-menus .wsite-menu li a {
+	background: #2c2b2b;
+	border-top: 1px #000 solid;
+	border-bottom: 1px #4b4b4b solid;
+	border-left: none;
+	border-right: none;
+	padding: 7px 4px 7px 4px;
+	color: #fff;
+}
+
+#wsite-menus .wsite-menu li a:hover {
+	color: #ff6633;
+	background: #2c2b2b;
+}
+
+/* Header Area
+-------------------------------------------------------------*/
+
+#header {
+	width: 100%;
+	height: 105px;
+}
+
+#header,
+#header table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+#header td {
+	vertical-align: middle;
+	text-align: left;
+}
+
+#logo {
+	padding: 25px 10px 25px 30px;
+}
+
+#header #header-top-right {
+	vertical-align: top;
+}
+
+#header #header-bottom-right {
+	vertical-align: bottom;
+}
+
+#header-top-right table {
+	width: 1px;
+}
+
+#header-top-right table,
+#header .search,
+#header .wsite-search {
+	clear: right;
+	float: right;
+}
+
+#header-top-right td {
+	padding: 0;
+}
+
+#header-top-right table {
+	position: relative;
+	top: -1px;
+	border: 1px #292929 solid;
+	border-top: 0;
+	background: url(transparent.png);
+	_background: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='files/theme/transparent.png', sizingMethod='scale');
+}
+
+/* TOP RIGHT: Phone Number
+--------------------------------------------------------------------------------*/
+
+#header .phone-number {
+	padding-left: 10px;
+}
+
+#header .phone-number .wsite-text {
+	display: block;
+	white-space: nowrap;
+	color: #fff;
+	font-size: 14px;
+	font-weight: bold;
+	position: relative;
+	margin: 0 6px;
+	line-height: 47px;
+}
+
+/* TOP RIGHT: Content Area
+--------------------------------------------------------------------------------*/
+
+#header .social {
+	padding-right: 10px;
+}
+
+#header .wsite-social {
+	margin: 12px 6px;
+}
+
+
+.wsite-social-item {
+	width: 23px;
+	height: 23px;
+	margin: 0 0 0 3px;
+	background-image:url(social-dark.png);
+}
+
+.wsite-social-facebook {background-position:0 0;}
+	.wsite-social-facebook:hover {background-position:0 -23px;}
+	.wsite-social-facebook:active {background-position:0 -46px;}
+.wsite-social-pinterest {background-position:-23px 0;}
+	.wsite-social-pinterest:hover {background-position:-23px -23px;}
+	.wsite-social-pinterest:active {background-position:-23px -46px;}
+.wsite-social-twitter {background-position:-46px 0;}
+	.wsite-social-twitter:hover {background-position:-46px -23px;}
+	.wsite-social-twitter:active {background-position:-46px -46px;}
+.wsite-social-linkedin {background-position:-69px 0;}
+	.wsite-social-linkedin:hover {background-position:-69px -23px;}
+	.wsite-social-linkedin:active {background-position:-69px -46px;}
+.wsite-social-mail {background-position:-92px 0;}
+	.wsite-social-mail:hover {background-position:-92px -23px;}
+	.wsite-social-mail:active {background-position:-92px -46px;}
+.wsite-social-rss {background-position:-115px 0;}
+	.wsite-social-rss:hover {background-position:-115px -23px;}
+	.wsite-social-rss:active {background-position:-115px -46px;}
+.wsite-social-flickr {background-position:-138px 0;}
+	.wsite-social-flickr:hover {background-position:-138px -23px;}
+	.wsite-social-flickr:active {background-position:-138px -46px;}
+.wsite-social-plus {background-position:-161px 0;}
+	.wsite-social-plus:hover {background-position:-161px -23px;}
+	.wsite-social-plus:active {background-position:-161px -46px;}
+.wsite-social-vimeo {background-position:-184px 0;}
+	.wsite-social-vimeo:hover {background-position:-184px -23px;}
+	.wsite-social-vimeo:active {background-position:-184px -46px;}
+.wsite-social-yahoo {background-position:-207px 0;}
+	.wsite-social-yahoo:hover {background-position:-207px -23px;}
+	.wsite-social-yahoo:active {background-position:-207px -46px;}
+.wsite-social-youtube {background-position:-230px 0;}
+	.wsite-social-youtube:hover {background-position:-230px -23px;}
+	.wsite-social-youtube:active {background-position:-230px -46px;}
+
+
+/* TOP RIGHT: Search Box
+--------------------------------------------------------------------------------*/
+
+#header .wsite-search {
+	margin-bottom: 13px;
+}
+
+#header .wsite-search .wsite-search-input {
+	width: 180px;
+	height: 32px;
+	border: none;
+	color: #cccccc;
+	font-size: 14px;
+	line-height: 100%;
+	vertical-align: text-top;
+	padding: 0 4px 0 8px !important;
+	background: url(input-bg.png) no-repeat;
+	_background: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='files/theme/input-bg.png', sizingMethod='crop');
+}
+
+#header .wsite-search .wsite-search-button {
+	width: 43px;
+	height: 32px;
+	border: none;
+	background: url(submit-bg.png) no-repeat;
+	_background: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='files/theme/submit-bg.png', sizingMethod='crop');
+}
+
+#header .wsite-search .wsite-button span {
+	background: none;
+}
+
+/* Footer
+--------------------------------------------------------------------------------*/
+
+#footer {
+	width: 960px;
+	padding: 36px 0 30px 0;
+	text-align: right;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+#footer a {
+	color: #888;
+	text-decoration: none;
+}
+
+#footer a:hover {
+	color: #fff;
+}
+
+.wsite-footer {  /* make sure enough space between element footer and attribution */
+	margin-bottom: 15px;
+}
+
+#footer h2 {
+	font-size:18px;
+	border-bottom:1px solid #999;
+}
+
+/* Footer Form Customization
+--------------------------------------------------------------------------------*/
+
+.wsite-form-container {
+	margin-top:0px !important;
+	text-align:left !important;
+}
+
+.wsite-footer .wsite-form-label {
+	font-size: 1em !important;
+	padding: 5px 0 2px 0 !important;
+}
+
+.wsite-footer .wsite-form-field {
+	width:330px !important;
+}
+
+.wsite-footer .form-radio-container {
+	font-size:1em !important;
+}
+
+.wsite-footer .wsite-form-input {
+	font-size: 1em !important;
+	width: 100% !important;
+}
+
+.wsite-footer .form-select {
+	width: 100% !important;
+}
+
+
+/* PAGE TYPE: tall-header
+--------------------------------------------------------------------------------*/
+
+.tall-header-page .wsite-header {  /* the user-editable image */
+	width: 918px;
+	height: 248px;
+	margin: 0 0 0 2px;
+	background: url(banner-tall.jpg);
+}
+
+/* PAGE TYPE: short-header
+--------------------------------------------------------------------------------*/
+
+.short-header-page .wsite-header {  /* the user-editable image */
+	width: 918px;
+	height: 148px;
+	margin: 0 0 0 2px;
+	background: url(banner-short.jpg);
+}
+
+/* PAGE TYPE: landing
+--------------------------------------------------------------------------------*/
+
+#inner-ban {
+	width: 920px;
+	display: inline-block;
+	padding: 0 0 20px 0;
+	border-bottom: 1px #292929 solid;
+}
+
+#ban-left {
+	float: left;
+	width: 554px;
+}
+
+.landing-banner-outer {
+	display: table;
+	#position: relative;
+	overflow: hidden;
+}
+
+.landing-banner-mid {
+	#position: absolute;
+	#top: 50%;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.landing-banner-inner {
+	#position: relative;
+	#top: -50%;
+}
+
+#bannerright {
+	float: left;
+	width: 352px;
+	height: 268px;
+	padding: 0;
+}
+
+#bannerright h2 {
+	font-size: 30px;
+	line-height: 1;
+    padding: 0px;
+}
+
+#bannerright p {
+	padding: 20px 0 20px 0;
+	line-height: 140%;
+}
+
+.wsite-button {
+	margin: 0px 0 0 0;
+}
+
+#ban-left .wsite-header {  /* the user-editable image */
+	width: 521px;
+	height: 268px;
+	background: url(banner-landing.jpg);
+}
+
+/* PAGE TYPE: splash
+--------------------------------------------------------------------------------*/
+
+.splash-page #wrapper {
+	width: 610px;
+}
+
+.splash-page #header {
+	height: 110px;
+}
+
+.splash-page #banner {
+	width: 562px;
+	padding: 22px 23px 5px 23px;
+	border-top: 1px solid #292929;
+	border-left: 1px solid #292929;
+	border-right: 1px solid #292929;
+	background: url(transparent.png);
+	_background: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='files/theme/transparent.png', sizingMethod='scale');
+}
+
+.splash-page .wsite-header {  /* the user-editable image */
+	width: 563px;
+	height: 148px;
+	background: url(banner-splash.jpg);
+}
+
+.splash-page #content {
+	width: 562px;
+	height: auto !important;
+	min-height: 300px;
+	_height: 300px;
+	padding: 14px 23px 25px 23px;
+	border-bottom: 1px solid #292929;
+	border-left: 1px solid #292929;
+	border-right: 1px solid #292929;
+	background: url(transparent.png);
+	_background: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='files/theme/transparent.png', sizingMethod='scale');
+}
+
+.splash-page #footer {
+	width: 550px;
+	text-align: center;
+}
+
+/* Form Customization
+--------------------------------------------------------------------------------*/
+
+.wsite-form-label {
+	display: block;
+	color: #fff;
+	font-size: 14px;
+	padding: 20px 0 8px 0;
+	font-weight: normal;
+}
+
+.form-radio-container {
+	color: #474747;
+	font-size: 13px;
+}
+
+.wsite-form-input, .wsite-search-element-input {
+	width: 307px;
+	font-size: 13px;
+	padding: 4px 10px 4px 10px;
+	background: #020202;
+	color: #cccccc;
+	border: 1px solid #2a2a2a;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	margin-bottom: 5px;
+}
+
+.wsite-search-element-submit {
+	margin-top: -10px;
+}
+
+.form-select {
+	width: 379px;
+	height: 28px;
+	color: #fff;
+	background: #020202;
+	border: 1px solid #2a2a2a;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.form-radio-container label {
+	color: #fff;
+}
+
+/* Buttons
+--------------------------------------------------------------------------------*/
+
+/*
+  Buttons are styled with background image sprites. There are 4 unique image files:
+   - small & normal-colored  (button_small_grey.png)
+   - large & normal-colored  (button_large_grey.png)
+   - small & highlight-colored  (button_small_orange.png)
+   - large & highlight-colored  (button_large_orange.png)
+
+  Each of these 4 types of buttons must define a :hover state (when user's mouse is over)
+  as well as an :active state (when the user presses down).
+
+  Look at the CSS (especially the inner .wsite-button-inner wrapper), as well as the
+  image files to understand how the liquid-width nature of these buttons work.
+ */
+
+/* small */
+
+.wsite-button {
+	color: #fff !important;
+	height: 34px;
+	display: inline-block;
+	font-size: 14px;
+	border: none;
+	font-weight: bold;
+	text-decoration: none;
+	text-transform: uppercase;
+	padding: 0 10px 0 0;
+	background: url(button_small_black.png) no-repeat 100% -105px;
+	outline: none;
+	text-shadow:0 -1px 0 rgba(0,0,0,0.9);
+}
+
+.wsite-button:hover {
+	background-position: 100% -140px;
+}
+
+.wsite-button:active {
+	background-position: 100% -175px;
+}
+
+.wsite-button-inner {
+	color: #fff !important;
+	height: 34px;
+	line-height: 34px;
+	display: block;
+	font-size: 14px;
+	font-weight: bold;
+	border: none;
+	text-decoration: none;
+	padding: 0 10px 0 20px;
+	background: url(button_small_black.png) no-repeat 0 0;
+	outline: none;
+}
+
+.wsite-button:hover .wsite-button-inner {
+	background-position: 0 -35px;
+}
+
+.wsite-button:active .wsite-button-inner {
+	background-position: 0 -70px;
+}
+
+/* large */
+
+.wsite-button-large {
+	color: #fff !important;
+	height: 41px;
+	background: url(button_large_black.png) no-repeat 100% -126px;
+	padding: 0 10px 0 0;
+}
+
+.wsite-button-large:hover {
+	background-position: 100% -168px;
+}
+
+.wsite-button-large:active {
+	background-position: 100% -210px;
+}
+
+.wsite-button-large .wsite-button-inner {
+	color: #fff !important;
+	height: 41px;
+	line-height: 41px;
+	padding: 0 10px 0 20px;
+	background: url(button_large_black.png) no-repeat 0 0;
+}
+
+.wsite-button-large:hover .wsite-button-inner {
+	background-position: 0 -42px;
+}
+
+.wsite-button-large:active .wsite-button-inner {
+	background-position: 0 -84px;
+}
+
+/* highlight */
+
+/*
+Making the highlighted versions of the buttons is easy because we just need
+to switch out the background images. This works because the different button
+states (normal, :hover, :active) have their sprite coordinates in the same places.
+*/
+
+.wsite-button-large.wsite-button-highlight {
+	color: #fff !important;
+	background-image: url(button_large_orange.png);
+}
+
+.wsite-button-large.wsite-button-highlight .wsite-button-inner {
+	color: #fff !important;
+	background-image: url(button_large_orange.png);
+}
+
+.wsite-button-highlight {
+	color: #fff !important;
+	background-image: url(button_small_orange.png);
+}
+
+.wsite-button-highlight .wsite-button-inner {
+	color: #fff !important;
+	background-image: url(button_small_orange.png);
+}
+
+/* Blog Customization */
+
+#blog-title a {
+	font-family: arial, sans-serif;
+	font-size: 24px;
+	line-height: 1.5em;
+	color: #FF6633;
+}
+
+#blog-title a:hover {
+	font-family: arial, sans-serif;
+	font-size: 24px;
+	line-height: 1.5em;
+	color: #FF6633;
+}

@@ -12,6 +12,12 @@ $config = [
     'language' => 'uk-UA',
     'bootstrap' => ['log'],
     'components' => [
+        'view' => [
+			'theme' => [
+				'pathMap' => ['@app/views' => '@app/themes/stargazers'],
+				'baseUrl' => '@web/themes/stargazers',
+			],
+		], 
       'i18n' => [
         'translations' => [
           'app*' => [
@@ -33,6 +39,7 @@ $config = [
                 '' => 'site/index',
                 'about' => 'site/about',
                 'posts'=>'post/index',
+                'admin'=>'admin/index',
                 'post/<id:\d+>'=>'post/show',
 				[
 					'pattern' => 'feed',

@@ -1,5 +1,6 @@
 <?php
     use yii\helpers\Html;
+    use yii\helpers\Url;
     use yii\widgets\LinkPager;
 ?>
 <div class="row wrap">
@@ -20,6 +21,9 @@
                     </div>
                 </div>
                 <div class="col-sm-3">
+                    <?php
+                        echo HTML::a('Написати повідомлення', ['/messages/'.$user->username]); ?>
+           
                     <?php if (!Yii::$app->user->isGuest && ($user->id != Yii::$app->user->id)){
                     if (Yii::$app->user->identity->isFollowingTo($user->id)){
                         $but_action = 'unfollow';

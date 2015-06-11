@@ -19,10 +19,6 @@ use yii\widgets\ActiveForm;
         <div class="row">
             <div class="col-lg-12">
                 <?php 
-                $list_a = array(0 => 'Виберіть групу');
-                $list = array_merge($list_a, $list);
-                $list_b = array(0 => 'Виберіть кафедру');
-                $list_department = array_merge($list_b, $list_department);
                 
                 $form = ActiveForm::begin(['id' => 'form-signup',
                     'options' => ['class' => 'form-horizontal'],

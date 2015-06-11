@@ -28,7 +28,7 @@ class Lists extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            ['', 'required'],
+            [['name', 'list_type', 'slug', 'parent_id'], 'required'],
         ];
     }
 

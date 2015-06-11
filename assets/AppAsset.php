@@ -18,14 +18,14 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        '//xcdn.webstart.in.ua/css/prettyPhoto.css',
+        'css/prettyPhoto.css',
         'css/site_stepan.css',
     ];
     public $js = [
-        '//xcdn.webstart.in.ua/js/underscore.js',
-        '//xcdn.webstart.in.ua/js/backbone.js',
-        '//xcdn.webstart.in.ua/js/widgEditor.js',
-        '//xcdn.webstart.in.ua/js/jquery.prettyPhoto.js',
+        'js/underscore.js',
+        'js/backbone.js',
+        'js/widgEditor.js',
+        'js/jquery.prettyPhoto.js',
         'js/jq.js',
     ];
     public $depends = [

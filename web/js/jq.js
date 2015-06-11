@@ -1,5 +1,32 @@
 $(document).ready(function(){
-             
+            
+    
+    $('.activeted').click(function(){
+        //var data = $(this).data('id');
+       //alert('dcvf');
+        var text = $(this).text();
+        var url;
+        if(text == 'Підтвердити'){
+            url = 'admin/activated';
+        }else{
+            url = 'admin/disabling';
+        }
+       //alert(url);
+       
+       var qwe =$(this);
+       $.ajax({
+            type: 'POST',
+            url: url,
+            data: {id : $(this).data('id')},
+            dataType: "json",
+            success: function(response){
+                alert(response.status);
+                console.log(response); 
+                qwe.text(response.text);
+            }
+        }); 
+    });
+            
             $('.mymessages').mouseenter(function(){
                 $(this).css('background-color', '#E3FAF8');
             });

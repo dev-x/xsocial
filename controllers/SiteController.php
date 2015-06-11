@@ -104,7 +104,7 @@ class SiteController extends Controller
     
     public function actionSignup()
     {
-        $list = ArrayHelper::map(Lists::getList('group'), 'id', 'name'); ;
+        $list = ArrayHelper::map(Lists::getList('group'), 'id', 'name');
         $list_city = ArrayHelper::map(Lists::getList('city'), 'id', 'name');
         $list_role = ArrayHelper::map(Lists::getList('role'), 'id', 'name');
         $list_department = ArrayHelper::map(Lists::getList('department'), 'id', 'name');
@@ -112,20 +112,20 @@ class SiteController extends Controller
         $model->scenario = 'register';
         if ($model->load($_POST)){
             $model->password_hash = \Yii::$app->security->generatePasswordHash($model->password);
-                $model->auth_key = 'key';
+            $model->auth_key = 'key';
                 if ($model->save()) {
-            if (Yii::$app->getUser()->login($model)) {
-                return $this->goHome();
-            }
+                    if (Yii::$app->getUser()->login($model)) {
+                        return $this->goHome();
+                    }
+                }
         }
-    }
-        return $this->render('signup', [
-            'model' => $model,
-            'list' => $list,
-            'list_city' => $list_city,
-            'list_role' => $list_role,
-            'list_department' => $list_department,
-        ]);
+    return $this->render('signup', [
+        'model' => $model,
+        'list' => $list,
+        'list_city' => $list_city,
+        'list_role' => $list_role,
+        'list_department' => $list_department,
+    ]);
     }
 
     public function actionAddvk()

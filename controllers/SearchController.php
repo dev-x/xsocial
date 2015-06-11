@@ -44,7 +44,7 @@ class SearchController extends Controller
 					$ids[] = $ft->following_user_id;
 				}
 				
-                                $posts = Post::find()->where(['user_id' => $ids]);
+                                $posts = Post::find()->where(['user_id' => $ids, 'privacy_id' => '13']);
                                 $model = new ActiveDataProvider(['query' => $posts, 'pagination' => ['pageSize' => 5]]);
                                 
 				break;
@@ -54,22 +54,54 @@ class SearchController extends Controller
                                     $posts = Post::find()->where([$taxonomy => $lists->id]);
                                     $model = new ActiveDataProvider(['query' => $posts, 'pagination' => ['pageSize' => 5]]);
                             break;
+                        case 'department':
+                        //case 'xxx':
+                            $id_department = Lists::find()->where(['id' => Yii::$app->user->identity->group])->one();
+                            $model_groups = Lists::find()->where(['list_type'=>'group','parent_id' => $id_department->parent_id])->all();
+                            $group_id = '';
+                                foreach($model_groups as $group){
+                                    $group_id[] = $group->id;
+                                }
+                            $model_users = User::find()->where(['group' => $group_id])->all();
+                            
+                            $user_id = '';
+                                foreach($model_users as $user){
+                                    $user_id[] = $user->id;
+                                }
+                            //var_dump($users);exit;
+                            
+                            $posts = Post::find()->where(['user_id' => $user_id])->andWhere('privacy_id >= 44');
+                            $model = new ActiveDataProvider(['query' => $posts, 'pagination' => ['pageSize' => 5]]);
+                            
+                            break;
                         case 'group':
-                        case 'xxx':
-                                    $lists = Lists::findOne(array('list_type' => $taxonomy, 'slug' => $keyword));
-                                    if($lists){
-                                        $model_users = User::find()->where([$taxonomy => $lists->id])->all();
-
-                                        $user_id = '';
-                                        foreach($model_users as $user){
-                                            $user_id[] = $user->id;
-                                        }
-                                        $posts = Post::find()->where(['user_id' => $user_id]);
-                                        $model = new ActiveDataProvider(['query' => $posts, 'pagination' => ['pageSize' => 5]]);
-
-                                    }else{
-                                        $posts = null;
+                        //case 'xxx':
+                            $model_users = User::find()->where(['group' => Yii::$app->user->identity->group])->all();
+                            $user_id = '';
+                            foreach($model_users as $user){
+                                        $user_id[] = $user->id;
                                     }
+                            $posts = Post::find()->where(['user_id' => $user_id])->andWhere('privacy_id >= 43')->orWhere('privacy_id > 44');
+                            $model = new ActiveDataProvider(['query' => $posts, 'pagination' => ['pageSize' => 5]]);
+                            
+                            //var_dump($posts);exit;
+                            /*
+                                $lists = Lists::findOne(array('list_type' => $taxonomy));
+                                if($lists){
+                                    $model_users = User::find()->where([$taxonomy => $lists->id])->all();
+
+                                    $user_id = '';
+                                    foreach($model_users as $user){
+                                        $user_id[] = $user->id;
+                                    }
+                                    
+                                    $posts = Post::find()->where(['user_id' => $user_id]);
+                                    $model = new ActiveDataProvider(['query' => $posts, 'pagination' => ['pageSize' => 5]]);
+
+                                }else{
+                                    $posts = null;
+                                } */
+                            
 		} echo $this->render('/site/feed', [
                             'posts' => $model->getModels(),
                             'pagination' => $model->pagination,

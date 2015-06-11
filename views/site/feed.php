@@ -10,7 +10,5 @@ use app\components\ListFilter;
     </div>
     <div class="col-sm-3 col-xs-12">
         <?= ListFilter::widget(['type' => 'group', 'name' => 'group']) ?>
-        <?= ListFilter::widget(['type' => 'post_type', 'name' => 'postType']) ?>
-        <?= ListFilter::widget(['type' => 'post_category', 'name' => 'postCategory']) ?>
     </div>
 </div>
