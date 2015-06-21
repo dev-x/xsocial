@@ -6,7 +6,7 @@
     <div class="col-sm-9 col-xs-12">
         <?php echo $this->render('_menu', array('modelUser' => $modelUser)); ?>
         <div class="col-sm-12 followerspage">
-        <h1>Messages</h1>
+        <h1>Повідомлення</h1>
             <?php 
             //var_dump();
                 foreach ($mymessages as $message){ ?>

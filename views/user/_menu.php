@@ -12,9 +12,9 @@ use yii\helpers\Html;
     </ul>-->
     <?php
         if(Yii::$app->user->identity->id == $modelUser->id){
-            $followerPage = "My followers";
+            $followerPage = "Мої підписники";
         }else{
-            $followerPage = $modelUser->username." Followers";
+            $followerPage = $modelUser->username." підписники";
         }
         
         $class = ($this->context->getRoute() == 'user/show')?'btn btn-default':'btn btn-primary'; 
@@ -26,15 +26,15 @@ use yii\helpers\Html;
          
         ?>
     
-        <?= HTML::a(\Yii::t('app', 'Posts'), array('user/show', 'username' => $modelUser->username),array('class'=>$class)); ?>
+        <?= HTML::a(\Yii::t('app', 'Новини'), array('user/show', 'username' => $modelUser->username),array('class'=>$class)); ?>
         <?= HTML::a(\Yii::t('app', 'Photos'), array('user/images', 'username' => $modelUser->username),array('class'=>$class1));?>
         <?= HTML::a(\Yii::t('app', 'Profile'), array('user/profile', 'username' => $modelUser->username),array('class'=>$class2));?>
         <?= HTML::a(\Yii::t('app',$followerPage), array('user/myfollows', 'username' => $modelUser->username),array('class'=>$class3));?>
         <?php if(Yii::$app->user->identity->id == $modelUser->id){
-           echo HTML::a(\Yii::t('app','My messages'), array('user/messages', 'username' => $modelUser->username),array('class'=>$class5));
+           echo HTML::a(\Yii::t('app','Мої повідомлення'), array('user/messages', 'username' => $modelUser->username),array('class'=>$class5));
         } ?>
         <?php if(Yii::$app->user->identity->id == $modelUser->id){
-           echo HTML::a(\Yii::t('app',"my likes"), array('user/mylikes', 'username' => $modelUser->username),array('class'=>$class4));
+           echo HTML::a(\Yii::t('app',"Мої лайки"), array('user/mylikes', 'username' => $modelUser->username),array('class'=>$class4));
         } ?>
         <!--<li class=""><?//= HTML::a('Фотографії', ['user/images', 'username' => $modelUser->username]); ?></li>
         <li class=""><?//= HTML::a('Профіль', ['user/profile', 'username' => $modelUser->username]); ?></li>-->

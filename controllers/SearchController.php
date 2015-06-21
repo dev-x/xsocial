@@ -33,9 +33,8 @@ class SearchController extends Controller
                                 $model = new ActiveDataProvider(['query' => $posts, 'pagination' => ['pageSize' => 5]]);
 				break;
 			case 'feed':
-				if (Yii::$app->user->isGuest) {
-					echo 'redirect login'; 
-					return;
+                           	if (Yii::$app->user->isGuest) {
+					return $this->redirect('site/login');
 				}
 				$fts = Yii::$app->user->identity->followingTo;
         
@@ -44,18 +43,56 @@ class SearchController extends Controller
 					$ids[] = $ft->following_user_id;
 				}
 				
-                                $posts = Post::find()->where(['user_id' => $ids, 'privacy_id' => '13']);
+                                $posts = Post::find()->where(['user_id' => $ids])->andWhere('privacy_id >=43');
                                 $model = new ActiveDataProvider(['query' => $posts, 'pagination' => ['pageSize' => 5]]);
                                 
 				break;
                         case 'post_type':
                         case 'post_category':
                                     $lists = Lists::findOne(array('list_type' => $taxonomy, 'slug' => $keyword));
-                                    $posts = Post::find()->where([$taxonomy => $lists->id]);
+                                    $posts = Post::find()->where([$taxonomy => $lists->id])->orderBy(' `post_time` DESC');
                                     $model = new ActiveDataProvider(['query' => $posts, 'pagination' => ['pageSize' => 5]]);
                             break;
+                        
+                        case 'institute':
+                            if (Yii::$app->user->isGuest) {
+					echo 'redirect login'; 
+					return;
+				}
+                            $id_group = Lists::find()->where(['id' => Yii::$app->user->identity->group])->one();
+                            $id_department = Lists::find()->where(['id' => $id_group->parent_id])->one();
+                            //var_dump($id_department->parent_id);exit;
+                            
+                            $model_department = Lists::find()->where(['list_type'=>'department','parent_id' => $id_department->parent_id])->all();
+                            $department_id = '';
+                                foreach($model_department as $department){
+                                    $department_id[] = $department->id;
+                                }
+                            
+                            $model_groups = Lists::find()->where(['list_type'=>'group','parent_id' => $department_id])->all();
+                            //var_dump($model_groups);exit;
+                            
+                            $group_id = '';
+                                foreach($model_groups as $group){
+                                    $group_id[] = $group->id;
+                                }
+                                
+                            $model_users = User::find()->where(['group' => $group_id])->all();
+                            $user_id = '';
+                                foreach($model_users as $user){
+                                    $user_id[] = $user->id;
+                                }
+                            //var_dump($user_id);exit;
+                            
+                            $posts = Post::find()->where(['user_id' => $user_id])->andWhere('privacy_id >= 45')->orderBy(' `post_time` DESC');
+                            $model = new ActiveDataProvider(['query' => $posts, 'pagination' => ['pageSize' => 5]]);                          
+                            break;
+                        
                         case 'department':
-                        //case 'xxx':
+                            if (Yii::$app->user->isGuest) {
+					echo 'redirect login'; 
+					return;
+				}
                             $id_department = Lists::find()->where(['id' => Yii::$app->user->identity->group])->one();
                             $model_groups = Lists::find()->where(['list_type'=>'group','parent_id' => $id_department->parent_id])->all();
                             $group_id = '';
@@ -70,39 +107,25 @@ class SearchController extends Controller
                                 }
                             //var_dump($users);exit;
                             
-                            $posts = Post::find()->where(['user_id' => $user_id])->andWhere('privacy_id >= 44');
-                            $model = new ActiveDataProvider(['query' => $posts, 'pagination' => ['pageSize' => 5]]);
-                            
+                            $posts = Post::find()->where(['user_id' => $user_id])->andWhere('privacy_id >= 44')->orderBy(' `post_time` DESC');
+                            $model = new ActiveDataProvider(['query' => $posts, 'pagination' => ['pageSize' => 5]]);                         
                             break;
+                            
+                            
                         case 'group':
-                        //case 'xxx':
+                            if (Yii::$app->user->isGuest) {
+                                echo 'redirect login'; 
+                                return;
+                            }
                             $model_users = User::find()->where(['group' => Yii::$app->user->identity->group])->all();
                             $user_id = '';
-                            foreach($model_users as $user){
-                                        $user_id[] = $user->id;
-                                    }
-                            $posts = Post::find()->where(['user_id' => $user_id])->andWhere('privacy_id >= 43')->orWhere('privacy_id > 44');
+                                foreach($model_users as $user){
+                                    $user_id[] = $user->id;
+                                }
+                            $posts = Post::find()->where(['user_id' => $user_id])->andWhere('privacy_id >= 43')->orWhere('privacy_id > 44')->orderBy(' `post_time` DESC');
                             $model = new ActiveDataProvider(['query' => $posts, 'pagination' => ['pageSize' => 5]]);
                             
-                            //var_dump($posts);exit;
-                            /*
-                                $lists = Lists::findOne(array('list_type' => $taxonomy));
-                                if($lists){
-                                    $model_users = User::find()->where([$taxonomy => $lists->id])->all();
-
-                                    $user_id = '';
-                                    foreach($model_users as $user){
-                                        $user_id[] = $user->id;
-                                    }
-                                    
-                                    $posts = Post::find()->where(['user_id' => $user_id]);
-                                    $model = new ActiveDataProvider(['query' => $posts, 'pagination' => ['pageSize' => 5]]);
-
-                                }else{
-                                    $posts = null;
-                                } */
-                            
-		} echo $this->render('/site/feed', [
+                        } echo $this->render('/site/feed', [
                             'posts' => $model->getModels(),
                             'pagination' => $model->pagination,
                             'count' => $model->pagination->totalCount,

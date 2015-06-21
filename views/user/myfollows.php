@@ -22,7 +22,7 @@
                 </div>
                 <div class="col-sm-3">
                     <?php
-                        echo HTML::a('Написати повідомлення', ['/messages/'.$user->username]); ?>
+                        echo HTML::a('Написати повідомлення', [Url::to('').'/../messages/'.$user->username],['class' => 'btn btn-default pro100']); ?>
            
                     <?php if (!Yii::$app->user->isGuest && ($user->id != Yii::$app->user->id)){
                     if (Yii::$app->user->identity->isFollowingTo($user->id)){
@@ -33,7 +33,7 @@
                         $but_title = 'Підписатися';
                     }    
                     ?>
-                        <a href="#" class='btn btn-default follow-button' data-action='<?= $but_action; ?>' ><?= $but_title; ?></a>
+                        <a href="#" class='btn btn-default follow-button pro100' data-action='<?= $but_action; ?>' ><?= $but_title; ?></a>
                     <?php } ?>
                 </div>
             </div>

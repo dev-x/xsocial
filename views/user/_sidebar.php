@@ -21,12 +21,13 @@ use app\components\LatestNews;
         </div>
         <?php if (!Yii::$app->user->isGuest && ($userX->id == Yii::$app->user->id) && ($a == 1)) : ?>
         <?php \app\lib\LoadImageWidget::myRun($modelImage, 'image/create', 'form_upload_avatar', 'user', $userX->id); ?>
-        <a href="#" class="upload_button" onClick="$('#form_upload_avatar .file_input').trigger('click'); return false;"><b><?= \Yii::t('app', 'Change avatar')?></b></a><br>
+        <a href="#" class="upload_button btn btn-default" style='width: 100%; margin-right: 10px' onClick="$('#form_upload_avatar .file_input').trigger('click'); return false;"><b><?= \Yii::t('app', 'Change avatar')?></b></a><br>
         <?php if (!empty($userX->vk_id))
                 echo HTML::a(\Yii::t('app', 'VK Profile'), 'http://vk.com/id'.$userX->vk_id, ['target' => '_blank'])."<br>";
                 ?>
         <!--<button id="upload_button">Upload Image</button>-->
         <?php endif; ?>
+        
             <h5 style="color:#008B66;"><i class="glyphicon glyphicon-calendar"><b><?= \Yii::t('app', 'Birthday') ?>:</b></i><?php echo $userX->birthday; ?></h5>
             <h5 style="color:#008B66;"><i class="glyphicon glyphicon-home"><b><?= \Yii::t('app', 'Higt School') ?>:</b></i><?php echo $userX->vnz; ?></h5>
             <h5 style="color:#008B66;"><i class="glyphicon glyphicon-book"><b><?= \Yii::t('app', 'Class') ?>:</b></i><?php echo $userX->group; ?></h5>

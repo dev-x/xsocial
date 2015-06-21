@@ -12,6 +12,6 @@
                     <?php  echo Html::a('Новини моєї кафедри', ['search/department'],['class' => 'btn-submit btn btn-primary pro100']);  ?>
                 </div>
                 <div class="col-sm-12">
-                    <?php  echo Html::a('Новини моєї інституту', ['search/department'],['class' => 'btn-submit btn btn-primary pro100']);  ?>
+                    <?php  echo Html::a('Новини мого інституту', ['search/institute'],['class' => 'btn-submit btn btn-primary pro100']);  ?>
                 </div>    
         <?php //endforeach; ?>

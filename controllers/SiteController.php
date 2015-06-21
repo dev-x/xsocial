@@ -60,7 +60,7 @@ class SiteController extends Controller
     public function actionIndex()
     {
         //return $this->render('index');
-        return $this->redirect('post/index');
+        return $this->redirect('feed');
     }
 
     public function actionLogin()
@@ -119,13 +119,13 @@ class SiteController extends Controller
                     }
                 }
         }
-    return $this->render('signup', [
-        'model' => $model,
-        'list' => $list,
-        'list_city' => $list_city,
-        'list_role' => $list_role,
-        'list_department' => $list_department,
-    ]);
+        return $this->render('signup', [
+            'model' => $model,
+            'list' => $list,
+            'list_city' => $list_city,
+            'list_role' => $list_role,
+            'list_department' => $list_department,
+        ]);
     }
 
     public function actionAddvk()

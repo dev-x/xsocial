@@ -35,7 +35,8 @@ use yii\helpers\Url;
                             ?></div> -->
                         <div class="col-sm-12">
                             <div class="conte">
-                                <?= \app\lib\Str::highlightHashTags($post->content); ?>
+                                <?= mb_substr(\app\lib\Str::highlightHashTags($post->content), 0, 300, "UTF-8")."..."; ?>
+                                <?php //= \app\lib\Str::highlightHashTags($post->content); ?>
                             </div>
                         </div>
                         <div class="col-sm-12">

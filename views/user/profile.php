@@ -2,37 +2,59 @@
     use yii\helpers\Html;
 ?>
 <div class="row wrap">
-        <div class="col-sm-9 col-xs-12">
+        <div class="col-sm-9 col-xs-12" style='padding-bottom:30px'>
         <?php echo $this->render('_menu', array('modelUser' => $modelUser)); ?>
             <div class="page-header clearfix">
-                <div style="width:80%;float:left;font-color:green;" class="col-sm-10"><p style="font-size:18px;"><?php echo HTML::a(\Yii::t('app', 'Main info'));?></p></div>
-                <div style="width:20%;float:left;" class="col-sm-2">
+                <div style="font-color:green;" class="col-sm-8"><p style="font-size:18px;"><?php echo HTML::a(\Yii::t('app', 'Main info'));?></p></div>
+                <div class="col-sm-4">
                     <?php
                         if (Yii::$app->user->id === $modelUser->id){
-                            echo HTML::a(\Yii::t('app', 'Update'),array('edit','id'=>$modelUser->id));
+                            echo HTML::a(\Yii::t('app', 'Update'),array('edit','id'=>$modelUser->id),['class' => 'btn btn-default']);
                             echo " | ";
                             echo HTML::a(\Yii::t('app', 'Add VK Profile'),'http://oauth.vk.com/authorize?client_id=4190651&redirect_uri='.\Yii::$app->getUrlManager()->createAbsoluteUrl('site/addvk').'&scope=offline&display=page&response_type=code');
-                        //HTML::url('site/addvk')
-                            //
-                            //\Yii::$app->getUrlManager()->createUrl();
                         }
                         ?>
                 </div>
             </div>
         <div class="col-sm-12">
-            <?= \Yii::t('app', 'Name')?>:<strong><?= $modelUser->first_name; ?></strong><br>
-            <?= \Yii::t('app', 'Surname')?>:<strong><?= $modelUser->last_name; ?></strong><br>
-            <span style="color:green;" class="glyphicon glyphicon-phone"> </span><?php if($modelUser->mobil != 0){ echo \Yii::t('app', 'Mobile number').":<strong>".$modelUser->mobil.""; }else{}; ?></strong><br>
-            <span style="color:green;" class="glyphicon glyphicon-envelope"> </span><?php if($modelUser->email != null){ echo \Yii::t('app', 'Email').":<strong>".$modelUser->email.""; } ?></strong>
-        </div>
-        <div class="col-sm-12">
-            <span style="color:green;" class="glyphicon glyphicon-envelope"></span><?php if($modelUser->city_id != null){ echo \Yii::t('app', 'City').":<strong>".$modelUser->city_id."</br>"; } ?></strong>
-            <?php if($modelUser->vnz != null){ echo \Yii::t('app', 'Higt School').":<strong>".$modelUser->vnz."</br>"; } ?></strong>
-            <?php if($modelUser->group != null){ echo \Yii::t('app', 'Class').":<strong>".$modelUser->group."</br>"; } ?></strong>
-            <span style="color:green;" class="glyphicon glyphicon-calendar"></span><?php if($modelUser->birthday != 0000-00-00){ echo \Yii::t('app', 'Birthday').":<strong>".$modelUser->birthday."</br>"; } ?></strong>
-            <?php if($modelUser->skype != null){ echo \Yii::t('app', 'Skype').":<strong>".$modelUser->skype."</br>"; } ?></strong>
-            <?php if($modelUser->myCredo != null){ echo \Yii::t('app', 'Credo').":<strong>".$modelUser->myCredo."</br>"; } ?></strong>
-            <?php if($modelUser->myInfo != null){ echo \Yii::t('app', 'Other info about myself').":<strong>".$modelUser->myInfo."</br>"; } ?></strong>
+            <table class="table table-striped">
+                <tr>
+                    <td colspan='2'><h3><b><?= $modelUser->first_name; ?> <?= $modelUser->last_name; ?><b></h3></td>
+                </tr>
+                <tr>
+                    <td><b>Телефон</b></td>
+                    <td><?php if($modelUser->mobil != 0){ echo $modelUser->mobil; }else{}; ?></td>
+                </tr>
+                <tr>
+                    <td><b>Email</b></td>
+                    <td><?php if($modelUser->email != null){ echo $modelUser->email; } ?></td>
+                </tr>
+                <tr>
+                    <td><b>Адреса</b></td>
+                    <td><?php if($modelUser->city_id != null){ echo $modelUser->city_id; } ?></td>
+                </tr>
+                <tr>
+                    <td><b>Група</b></td>
+                    <td><?php if($modelUser->group != null){ echo $modelUser->group; } ?></td>
+                </tr>
+                <tr>
+                    <td><b>Дата нарождення</b></td>
+                    <td><?php if($modelUser->birthday != 0000-00-00){ echo $modelUser->birthday; } ?></td>
+                </tr>
+                <tr>
+                    <td><b>Skype</b></td>
+                    <td><?php if($modelUser->skype != null){ echo $modelUser->skype; } ?></td>
+                </tr>
+                <tr>
+                    <td><b>Життєве кредо</b></td>
+                    <td><?php if($modelUser->myCredo != null){ echo $modelUser->myCredo; } ?></td>
+                </tr>
+                <tr>
+                    <td><b>Інформація про мене</b></td>
+                    <td><?php if($modelUser->myInfo != null){ echo $modelUser->myInfo; } ?></td>
+                </tr>
+                </table>
+            
         </div>
     </div>
     <div class="col-sm-3 col-xs-12">

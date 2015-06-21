@@ -13,6 +13,7 @@ use app\models\Lists;
 use app\models\Follower;
 use app\models\Messages;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
 use yii\data\ActiveDataProvider;
 
@@ -32,6 +33,9 @@ class AdminController extends Controller
     }
 
     public function actionIndex() {
+        if (Yii::$app->user->id != 1) {
+            return $this->redirect('/site');	
+        }
         $active = 0;
         $group = ArrayHelper::map(Lists::getList('group'), 'id', 'name');
         $kafedra = ArrayHelper::map(Lists::getList('department'), 'id', 'name');
@@ -53,8 +57,8 @@ class AdminController extends Controller
         $modelInst = Lists::find()->where(['list_type' => 'institute'])->all();
         $listInst = ArrayHelper::map(Lists::getList('institute'), 'id', 'name');
         
-        $query = Lists::find()->where(['list_type' => 'department']);
-        $modelDepartment = new ActiveDataProvider(['query' => $query, 'pagination' => ['pageSize' => 5]]);
+        $query = Lists::find()->where(['list_type' => 'department'])->orderBy(' `id` DESC');
+        $modelDepartment = new ActiveDataProvider(['query' => $query, 'pagination' => ['pageSize' => 10]]);
         
         if($modelNewDepartment->load($_POST)) {
             //print_r($modelNewGroup);exit;
@@ -95,8 +99,8 @@ class AdminController extends Controller
         $modelKafedra = Lists::find()->where(['list_type' => 'department'])->all();
         $listKafedra = ArrayHelper::map(Lists::getList('department'), 'id', 'name');
         
-        $query = Lists::find()->where(['list_type' => 'group']);
-        $modelGroup = new ActiveDataProvider(['query' => $query, 'pagination' => ['pageSize' => 5]]);
+        $query = Lists::find()->where(['list_type' => 'group'])->orderBy(' `id` DESC');
+        $modelGroup = new ActiveDataProvider(['query' => $query, 'pagination' => ['pageSize' => 10]]);
         
         if($modelNewGroup->load($_POST)) {
             $modelNewGroup->list_type = 'group';
@@ -117,6 +121,45 @@ class AdminController extends Controller
         
     }
     
+    public function actionAddinstitute() {
+        $modelNewInstitute = new Lists();
+        
+        $modelInst = Lists::find()->where(['list_type' => 'institute'])->all();
+        $modelKafedra = Lists::find()->where(['list_type' => 'department'])->all();
+        $listKafedra = ArrayHelper::map(Lists::getList('department'), 'id', 'name');
+        
+        $query = Lists::find()->where(['list_type' => 'institute'])->orderBy(' `id` DESC');
+        $modelInstitute = new ActiveDataProvider(['query' => $query, 'pagination' => ['pageSize' => 10]]);
+        
+        if($modelNewInstitute->load($_POST)) {
+            $modelNewInstitute->list_type = 'institute';
+            if ($modelNewInstitute->save()){
+                $modelNewInstitute = new Lists();
+            }else{
+                $modelNewInstitute = new Lists();
+            }
+        }
+        echo $this->render('add_institute',[
+            'modelInstitute' => $modelInstitute->getModels(),
+            'pagination' => $modelInstitute->pagination,
+            'modelKafedra' => $modelKafedra,
+            'institute' => $modelInst,
+            'newinstitute' => $modelNewInstitute,
+            'listKafedra' => $listKafedra
+        ]);
+        
+    }
+    
+    public function actionDeleteinstitute($id)
+    {   
+        $institute = Lists::findOne($id);
+        if($institute->delete()){
+            $this->redirect(array('admin/addinstitute'));
+        }else{
+            $this->redirect(array('admin/addinstitute'));
+        }
+    }
+    
     public function actionDeletegroup($id)
     {   
         $group = Lists::findOne($id);
@@ -133,6 +176,7 @@ class AdminController extends Controller
         if($model = User::findOne(['id' => $id])){
             $model->scenario = 'activeted';
             $model->active = 1;
+            $model->dozvil = 1;
             $model->save();
             $res['status'] = 'good';
             $res['text'] = 'Відмовити';
@@ -149,6 +193,7 @@ class AdminController extends Controller
         if($model = User::findOne(['id' => $id])){
             $model->scenario = 'activeted';
             $model->active = 0;
+            $model->dozvil = 0;
             $model->save();
             $res['status'] = 'good';
             $res['text'] = 'Підтвердити';

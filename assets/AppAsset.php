@@ -20,6 +20,7 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/prettyPhoto.css',
         'css/site_stepan.css',
+        '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css',
     ];
     public $js = [
         'js/underscore.js',

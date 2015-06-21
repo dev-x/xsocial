@@ -2,8 +2,8 @@
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
 ?>
-<div class="row wrap" style="padding:20px;">
-    <h1>Адмінка</h1> 
+<div class="row wrap" style="padding:20px;padding-top:0px;">
+    <h1>Панель адміністрування</h1> 
     <div class='col-sm-12'>
         <?php echo $this->render('menu'); ?>    
     </div>

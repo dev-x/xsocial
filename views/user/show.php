@@ -57,11 +57,11 @@ $this->title = $modelUser->username;
                 <div class="well bs-component form_post" id="qw">
                         <?php  /* needfix $form = ActiveForm::begin(['id' => 'PostNew', 'action' => $action, 'options' => ['data-edit' => $edit_action], 'beforeSubmit' => new \yii\web\JsExpression('submitPost')]); */ ?>
                         <?php $form = ActiveForm::begin(['id' => 'PostNew', 'action' => $action, 'options' => ['data-edit' => $edit_action,'data-new' => $action]]); ?>
-                            <?= $form->field($modelNewPost, 'title')->textInput(['placeholder' => \Yii::t('app', 'Title')]); ?>
+                            <?= $form->field($modelNewPost, 'title')->textInput(['placeholder' => \Yii::t('app', 'Title')])->label(false); ?>
                         <div id="newPostContent" <?php if (!$modelNewPost->id) echo 'style="display:none;"'; ?> >
-                            <?= $form->field($modelNewPost, 'content')->textArea(['rows' => 6 , 'placeholder' => \Yii::t('app', 'Text of new post'), 'style'=>'max-widht:800px;']); ?>
-                            <?= $form->field($modelNewPost, 'post_type')->dropDownList($list); ?>
-                            <?= $form->field($modelNewPost, 'privacy_id')->dropDownList($list_private); ?>
+                            <?= $form->field($modelNewPost, 'content')->textArea(['rows' => 6 , 'placeholder' => \Yii::t('app', 'Text of new post'), 'style'=>'max-widht:800px;'])->label(false); ?>
+                            <?= $form->field($modelNewPost, 'post_type')->dropDownList($list)->label(false);; ?>
+                            <?= $form->field($modelNewPost, 'privacy_id')->dropDownList($list_private)->label(false);; ?>
                             <?php //= $form->field($modelNewPost, 'coordinates_lat')->textInput(['placeholder' => \Yii::t('app', 'coordinates lat')]); ?>
                             <?php //= $form->field($modelNewPost, 'coordinates_lng')->textInput(['placeholder' => \Yii::t('app', 'coordinates lng')]); ?>
                             <!--'class'=>'widgEditor nothing-->
@@ -82,7 +82,13 @@ $this->title = $modelUser->username;
                     <a href="#" class="upload_button" onClick="$('#form_upload_post_image .file_input').trigger('click'); return false;"><b><?= \Yii::t('app', 'Add Photo')?></b></a>
                     </div>
                 </div>
-                        <?php } ?>
+                        <?php }else{
+                            ?>                            
+                            <?php // = '<h2>'.\Yii::t('app', 'Sorry, but now your profile is inactive. You can simply wait or contact administrator').'</h2>'?>
+                            <?php
+                        }
+                        
+                        ?>
 
                 <div class="col-sm-12">
                     <div class="postsProfil">

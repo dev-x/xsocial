@@ -31,25 +31,40 @@ app\assets\AppAsset::register($this);
                 //'style' => ' background-color:#00936b;',
             ],
         ]);
-        echo Nav::widget([
+        if(Yii::$app->user->identity->username == 'admin'){
+            echo Nav::widget([
+                'options' => ['class' => 'navbar-nav pull-right'],
+                'items' => array_merge([
+                  Yii::$app->user->isGuest ?
+                    ['label' => \Yii::t('app', 'Новини'), 'url' => ['/post/index']]:
+                    ['label' => \Yii::t('app','Новини'), 'url' => ['/feed']],
+                    //['label' => 'Головна', 'url' => ['/site/index']],
+                    ['label' => \Yii::t('app', 'Адмін Панель'), 'url' => ['/admin/index']],
+                    ['label' => \Yii::t('app', 'About Us'), 'url' => ['/site/contact']],
+                    ['label' => \Yii::t('app', 'Users'), 'url' => ['/user/index']],
+                    ],
+                   (Yii::$app->user->isGuest ? [['label' => \Yii::t('app', 'Sign in/Sign up'), 'url' => ['/site/login']]]:
+                        [['label' => \Yii::t('app', 'You login as {username}', ['username' => Yii::$app->user->identity->username]),
+                            'url' => ['/site/logout'],
+                            'linkOptions' => ['data-method' => 'post']]]))
+            ]);
+        }else{
+            echo Nav::widget([
             'options' => ['class' => 'navbar-nav pull-right'],
             'items' => array_merge([
               Yii::$app->user->isGuest ?
-                ['label' => \Yii::t('app','News'), 'url' => ['/site/login']]:
-                ['label' => \Yii::t('app','News'), 'url' => ['/feed']],
+                ['label' => \Yii::t('app', 'Новини'), 'url' => ['/post/index']]:
+                ['label' => \Yii::t('app','Новини'), 'url' => ['/feed']],
                 //['label' => 'Головна', 'url' => ['/site/index']],
-                ['label' => \Yii::t('app', 'Posts'), 'url' => ['/post/index']],
                 ['label' => \Yii::t('app', 'About Us'), 'url' => ['/site/contact']],
                 ['label' => \Yii::t('app', 'Users'), 'url' => ['/user/index']],
-
                 ],
-               // [])
-
                (Yii::$app->user->isGuest ? [['label' => \Yii::t('app', 'Sign in/Sign up'), 'url' => ['/site/login']]]:
                     [['label' => \Yii::t('app', 'You login as {username}', ['username' => Yii::$app->user->identity->username]),
                         'url' => ['/site/logout'],
                         'linkOptions' => ['data-method' => 'post']]]))
         ]);
+        }
         NavBar::end();
     ?>
     <!--<div style="min-height: 140px; margin-top:-30px; width:100%; background-color: #B0D0C7; color: #aaaacc;" class="page-header clearfix"></div> -->
@@ -63,7 +78,6 @@ app\assets\AppAsset::register($this);
     <footer style="background-color:transparent;" class="navbar-inverse">
         <div class="container">
             <p class="pull-left">&copy; <?=\Yii::t('app', 'Webstart'); ?> <?= date('Y') ?></p>
-            <p class="pull-right"><?= Yii::powered() ?></p>
         </div>
     </footer>
 

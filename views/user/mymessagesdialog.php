@@ -20,7 +20,7 @@
     <div class="col-sm-9 col-xs-12">
         <?php  echo $this->render('_menu', array('modelUser' => $modelUser)); ?>
         <div class="col-sm-12" style='margin-bottom:20px;'>
-            <h1>Messagess</h1>
+            <h1>Повідомлення з <?= $modelFriend->username;?></h1>
             <?php $form = ActiveForm::begin(['id' => 'MessageNew', 'action' => Yii::$app->homeUrl.'messages/create']); ?>
             <input type="hidden" name="Messages[friend_id]" value="<?= $modelFriend->id; ?>">
             <input type="hidden" name="Messages[user_id]" value="<?= $modelUser->id; ?>">

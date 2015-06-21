@@ -20,7 +20,7 @@ $(document).ready(function(){
             data: {id : $(this).data('id')},
             dataType: "json",
             success: function(response){
-                alert(response.status);
+                //alert(response.status);
                 console.log(response); 
                 qwe.text(response.text);
             }

@@ -50,8 +50,9 @@ class PostController extends Controller
     
     public function actionIndex()
     {
-        $query = Post::find()->orderBy('post_time DESC');
+        $query = Post::find()->where(['privacy_id'=>'45'])->orderBy('post_time DESC');
         $model = new ActiveDataProvider(['query' => $query, 'pagination' => ['pageSize' => 5]]);
+        
         echo $this->render('index', [
             'data' => $model->getModels(),
             'pagination' => $model->pagination,
